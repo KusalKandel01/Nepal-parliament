@@ -54,14 +54,9 @@ async function init(){
     <div class="row"><span style="width:12px;height:12px;border-radius:3px;background:#c9a227;display:inline-block;"></span> National Assembly — ${na}</div>
   `;
 
-  // Party distribution (top 12)
+  // Coverage stats
   const partyCounts = {};
   members.forEach(m=>{ if(m.political_party) partyCounts[m.political_party] = (partyCounts[m.political_party]||0)+1; });
-  const partyData = Object.entries(partyCounts).sort((a,b)=>b[1]-a[1]).slice(0,12)
-    .map(([label,value],i)=>({label, value, color: PALETTE[i%PALETTE.length]}));
-  document.getElementById('partyChart').innerHTML = svgBarChart(partyData, {width:700, labelW:260});
-
-  // Coverage stats
   const withEmail = members.filter(m=>m.emails && m.emails.length).length;
   const withMobile = members.filter(m=>m.mobile_numbers && m.mobile_numbers.length).length;
   const withDistrict = members.filter(m=>m.district_constituency).length;

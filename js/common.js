@@ -12,7 +12,7 @@ function renderChrome(activePage){
     header.innerHTML = `
       <div class="top-inner">
         <a class="brand" href="index.html">
-          <div class="crest">सं</div>
+          <img class="crest" src="assets/emblem.png" alt="Nepal national emblem" width="44" height="44">
           <div>
             <h1 class="dev">संघीय संसद सम्पर्क निर्देशिका</h1>
             <p>Nepal Federal Parliament Contact Directory · Digitized Edition</p>
@@ -27,13 +27,14 @@ function renderChrome(activePage){
 
   if(nav){
     const links = [
-      ["index.html", "Directory"],
-      ["statistics.html", "Statistics"],
-      ["downloads.html", "Downloads"],
-      ["about.html", "About"],
+      ["index.html", "Directory", "निर्देशिका"],
+      ["parties.html", "Parties", "राजनीतिक दल"],
+      ["statistics.html", "Statistics", "तथ्याङ्क"],
+      ["downloads.html", "Downloads", "डाउनलोड"],
+      ["about.html", "About", "बारेमा"],
     ];
     nav.innerHTML = `<div class="tabs-inner">` +
-      links.map(([href,label]) => `<a class="tab ${activePage===href?'active':''}" href="${href}">${label}</a>`).join('') +
+      links.map(([href,en,ne]) => `<a class="tab ${activePage===href?'active':''}" href="${href}">${en} <span class="dev tab-ne">${ne}</span></a>`).join('') +
       `</div>`;
   }
 
