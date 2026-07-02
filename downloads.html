@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Downloads | Nepal Federal Parliament Contact Directory</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="top" id="siteHeader"></header>
+<nav class="tabs" id="siteNav"></nav>
+
+<main>
+  <div class="hero-panel">
+    <h2>Download the data</h2>
+    <p>The full directory dataset, free to reuse for research, journalism, or civic tools. See the About page for data-confidence notes before relying on any single field.</p>
+  </div>
+
+  <div class="download-grid">
+    <a class="download-card" href="data/members.json" download>
+      <div class="icon">🗂️</div>
+      <h4>members.json</h4>
+      <p>All 332 members, structured JSON. Best for developers.</p>
+    </a>
+    <a class="download-card" href="data/members.csv" download>
+      <div class="icon">📊</div>
+      <h4>members.csv</h4>
+      <p>Same data as CSV — opens directly in Excel or Google Sheets.</p>
+    </a>
+    <a class="download-card" href="data/leadership_offices.json" download>
+      <div class="icon">🏛️</div>
+      <h4>leadership_offices.json</h4>
+      <p>Supplementary raw extract of Secretariat leadership &amp; office contacts. Needs manual cleanup.</p>
+    </a>
+  </div>
+
+  <div class="section" style="margin-top:22px;">
+    <h2>Field reference</h2>
+    <table class="data-table">
+      <tr><th>Field</th><th>Description</th></tr>
+      <tr><td><code>id</code></td><td>Unique record ID (e.g. MP0001)</td></tr>
+      <tr><td><code>house</code></td><td>House of Representatives or National Assembly</td></tr>
+      <tr><td><code>sn_in_source</code></td><td>Serial number as printed in the source directory</td></tr>
+      <tr><td><code>full_name</code></td><td>Member's name</td></tr>
+      <tr><td><code>district_constituency</code></td><td>District and, for HoR, constituency number</td></tr>
+      <tr><td><code>political_party</code></td><td>Party affiliation, or "स्वतन्त्र" (Independent)</td></tr>
+      <tr><td><code>mobile_numbers</code></td><td>Array of mobile numbers on file</td></tr>
+      <tr><td><code>emails</code></td><td>Array of email addresses on file</td></tr>
+      <tr><td><code>source_page</code></td><td>Page number in the original PDF, for verification</td></tr>
+      <tr><td><code>data_confidence</code></td><td>Extraction confidence — see About page</td></tr>
+    </table>
+  </div>
+</main>
+
+<footer id="siteFooter"></footer>
+<script src="js/common.js"></script>
+<script>renderChrome('downloads.html');</script>
+</body>
+</html>

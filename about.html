@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About | Nepal Federal Parliament Contact Directory</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="top" id="siteHeader"></header>
+<nav class="tabs" id="siteNav"></nav>
+
+<main>
+  <div class="hero-panel">
+    <h2>About this project</h2>
+    <p>A modern, searchable rebuild of the Federal Parliament Secretariat's printed telephone directory.</p>
+  </div>
+
+  <div class="section">
+    <h2>What this is</h2>
+    <p>The Federal Parliament Secretariat publishes a printed Telephone Directory (2083 BS edition, 106 pages) listing every Member of the House of Representatives and National Assembly, along with Secretariat leadership and offices. It's comprehensive but hard to use: no search, dense tables, and not mobile-friendly.</p>
+    <p>This project extracts that same information into a searchable website, spreadsheet, and structured data files — while preserving every contact record from the source.</p>
+  </div>
+
+  <div class="section">
+    <h2>How the data was built</h2>
+    <p>The source PDF is typeset in <strong>Preeti</strong>, a legacy pre-Unicode Nepali font from the 1990s. Fonts like this render correctly on screen but store text internally in a way that standard PDF text extraction reads back as corrupted characters — copying text from the PDF produces garbage, even though it looks correct when printed or viewed.</p>
+    <p>To recover the data accurately, each of the 106 pages was rendered as a high-resolution image and read with OCR (optical character recognition), which reads the visual glyphs rather than the broken underlying text layer. Phone numbers and email addresses — which are typed in Latin script — were cross-validated directly against the PDF's native text layer, which extracts them correctly. This gives two independent sources of truth for the fields that matter most.</p>
+  </div>
+
+  <div class="section">
+    <h2>Data confidence</h2>
+    <p>Every record carries a <code>data_confidence</code> field:</p>
+    <table class="data-table">
+      <tr><th>Value</th><th>Meaning</th></tr>
+      <tr><td><strong>high</strong></td><td>Row matched cleanly across both extraction methods.</td></tr>
+      <tr><td><strong>medium_sequential / medium_fallback</strong></td><td>Recovered via a secondary matching pass — spot-check advised.</td></tr>
+      <tr><td><strong>low_needs_review / low_no_chunk</strong></td><td>Recommend manual verification against the source PDF page (listed in each record).</td></tr>
+    </table>
+    <p style="margin-top:14px;"><strong>Mobile numbers and email addresses are extracted from the PDF's native text layer, not OCR</strong>, so these fields should be faithful to the source regardless of confidence level. District/Constituency and Political Party fields were split algorithmically from OCR'd text and are the fields most likely to need a second look.</p>
+  </div>
+
+  <div class="section">
+    <h2>What's included / what's next</h2>
+    <p><strong>Included:</strong> all 275 House of Representatives members and 57 National Assembly members, with name, house, district/constituency, political party, mobile number(s), and email where available. A supplementary raw extract of Secretariat leadership and office contacts is also included in the downloads.</p>
+    <p><strong>Not yet included:</strong> the full Secretariat staff directory, province/district/ministry directories, and other public-service listings (hospitals, embassies, banks, media) that also appear in the source publication.</p>
+  </div>
+
+  <div class="section">
+    <h2>Corrections</h2>
+    <p>If you spot an incorrect number, email, or spelling, please open an issue on the project's GitHub repository with the person's name and the correct information.</p>
+  </div>
+</main>
+
+<footer id="siteFooter"></footer>
+<script src="js/common.js"></script>
+<script>renderChrome('about.html');</script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "name": "nepal-parliament-directory",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Searchable contact directory for Nepal's Federal Parliament (House of Representatives & National Assembly).",
+  "scripts": {
+    "dev": "npx serve . -l 3000",
+    "start": "npx serve ."
+  },
+  "license": "MIT"
+}
