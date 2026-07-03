@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Directory | Nepal Federal Parliament Contact Directory</title>
+<meta name="description" content="Search all 332 Members of Nepal's Federal Parliament by name, district, party, phone, or email.">
+<link rel="icon" href="assets/favicon.png" type="image/png">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="top" id="siteHeader"></header>
+<nav class="tabs" id="siteNav"></nav>
+
+<main>
+  <div class="hero-panel">
+    <h2>Search 332 Members of Parliament instantly <span class="dev" style="font-size:14px;font-weight:400;opacity:.85;">— सांसदहरू खोज्नुहोस्</span></h2>
+    <p>Search by name, district, constituency, political party, phone number, or email. Tap a card to call or email directly. Use filters to narrow by house or party.</p>
+  </div>
+
+  <div class="stats-row" id="statsRow"></div>
+
+  <div class="search-bar">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input id="searchInput" type="text" placeholder="Search name, district, party, phone, or email… (press / to focus)" autocomplete="off">
+  </div>
+
+  <div class="filters">
+    <div class="tabs-inner" id="houseTabs" style="padding:0;gap:6px;">
+      <div class="house-tab active" data-house="all">All</div>
+      <div class="house-tab" data-house="House of Representatives">House of Representatives</div>
+      <div class="house-tab" data-house="National Assembly">National Assembly</div>
+      <div class="house-tab" data-house="favorites">★ Favorites</div>
+    </div>
+    <select id="partyFilter"><option value="">All Parties</option></select>
+    <select id="sortSelect">
+      <option value="sn">Sort: S.N. (default)</option>
+      <option value="name">Sort: Name (A–Z)</option>
+      <option value="party">Sort: Party</option>
+      <option value="district">Sort: District</option>
+    </select>
+  </div>
+
+  <div class="alpha-row" id="alphaRow"></div>
+
+  <div class="result-meta" id="resultMeta"></div>
+  <div class="grid" id="grid"></div>
+  <div class="pagination" id="pagination"></div>
+</main>
+
+<footer id="siteFooter"></footer>
+
+<script src="js/common.js"></script>
+<script src="js/directory.js"></script>
+</body>
+</html>
