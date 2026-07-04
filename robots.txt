@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://nepal-parliament-directory.vercel.app/sitemap.xml
