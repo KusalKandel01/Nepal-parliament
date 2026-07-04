@@ -1,0 +1,14 @@
+{
+  "name": "संघीय संसद सम्पर्क निर्देशिका — Federal Parliament Contact Directory",
+  "short_name": "संसद निर्देशिका",
+  "description": "Nepal's Federal Parliament member, leadership, and committee contact directory.",
+  "start_url": "/index.html",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#F4F6F8",
+  "theme_color": "#0B1A2E",
+  "lang": "ne",
+  "icons": [
+    { "src": "assets/images/emblem.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

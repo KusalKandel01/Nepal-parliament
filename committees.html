@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>समितिहरू | Committees — संघीय संसद सम्पर्क निर्देशिका</title>
+<meta name="description" content="प्रतिनिधि सभा, राष्ट्रिय सभा र संयुक्त समितिहरूको सभापति, सचिव र कार्यालय सम्पर्क विवरण।">
+<meta name="theme-color" content="#0B1A2E">
+<link rel="canonical" href="https://nepal-parliament-directory.vercel.app/committees.html">
+<link rel="icon" href="assets/images/emblem.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">मुख्य सामग्रीमा जानुहोस्</a>
+<header class="site-header" id="siteHeader"></header>
+
+<main id="main">
+  <div class="page-hero">
+    <h1>समितिहरू</h1>
+    <p>संघीय संसद अन्तर्गतका विषयगत समितिहरूको सभापति, सचिव र कार्यालय सम्पर्क।</p>
+  </div>
+
+  <div class="section">
+    <div class="tabs" id="committeeTabs">
+      <button class="tab-btn active" data-house="all">सबै (16)</button>
+      <button class="tab-btn" data-house="HoR">प्रतिनिधि सभा</button>
+      <button class="tab-btn" data-house="NA">राष्ट्रिय सभा</button>
+      <button class="tab-btn" data-house="Joint">संयुक्त समिति</button>
+    </div>
+    <div id="committeeList">
+      <div class="loading-state"><div class="spinner"></div>लोड हुँदैछ…</div>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer" id="siteFooter"></footer>
+<button class="scroll-top" id="scrollTopBtn" aria-label="माथि जानुहोस्"></button>
+
+<script src="assets/js/app.js"></script>
+<script>
+APP.renderHeader("committees.html");
+APP.renderFooter();
+APP.initScrollTop();
+
+(async function () {
+  const list = document.getElementById("committeeList");
+  const tabs = document.getElementById("committeeTabs");
+  let committees = [];
+  try {
+    const data = await APP.loadJSON("committees.json");
+    committees = data.committees;
+  } catch (e) {
+    list.innerHTML = `<div class="no-results"><p>लोड गर्न असफल भयो।</p></div>`;
+    return;
+  }
+
+  const houseLabel = { HoR: "प्रतिनिधि सभा", NA: "राष्ट्रिय सभा", Joint: "संयुक्त समिति" };
+
+  function render(filter) {
+    const items = filter === "all" ? committees : committees.filter(c => c.house === filter);
+    list.innerHTML = items.map(c => `
+      <div class="committee-card">
+        <h3>${APP.escapeHtml(c.name_ne)}<span class="committee-badge">${houseLabel[c.house]}</span></h3>
+        <div class="en">${APP.escapeHtml(c.name_en)}</div>
+        <div class="committee-people">
+          <div><div class="role">सभापति</div>${APP.escapeHtml(c.chair_ne || "—")} ${c.chair_office ? `· <a href="tel:${c.chair_office.replace(/\D/g,'')}">${c.chair_office}</a>` : ""}</div>
+          ${c.secretary_ne ? `<div><div class="role">सचिव</div>${APP.escapeHtml(c.secretary_ne)} ${c.secretary_office ? `· <a href="tel:${c.secretary_office.replace(/\D/g,'')}">${c.secretary_office}</a>` : ""}</div>` : ""}
+          ${c.email ? `<div><div class="role">इमेल</div><a href="mailto:${c.email}">${c.email}</a></div>` : ""}
+        </div>
+      </div>
+    `).join("");
+  }
+
+  tabs.querySelectorAll(".tab-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      tabs.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      render(btn.dataset.house);
+    });
+  });
+
+  render("all");
+})();
+</script>
+</body>
+</html>

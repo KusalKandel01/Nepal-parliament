@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>सदस्य निर्देशिका | Member Directory — संघीय संसद सम्पर्क निर्देशिका</title>
+<meta name="description" content="नेपालको प्रतिनिधि सभा र राष्ट्रिय सभाका सबै ३३२ सदस्यहरू खोज्नुहोस् — नाम, जिल्ला, दल, फोन वा इमेलद्वारा फिल्टर गर्नुहोस्।">
+<meta name="theme-color" content="#0B1A2E">
+<link rel="canonical" href="https://nepal-parliament-directory.vercel.app/directory.html">
+<link rel="icon" href="assets/images/emblem.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">मुख्य सामग्रीमा जानुहोस्</a>
+<header class="site-header" id="siteHeader"></header>
+
+<main id="main">
+  <div class="page-hero" style="padding-bottom:0;">
+    <h1>सदस्य निर्देशिका</h1>
+    <p>नाम, जिल्ला, राजनीतिक दल, फोन वा इमेलद्वारा खोज्नुहोस्। नतिजाहरू स्वतः फिल्टर हुन्छन्।</p>
+  </div>
+
+  <div class="stats-bar" id="statsBar"></div>
+
+  <div class="search-wrap" style="max-width:640px;margin:24px auto 0;">
+    <div class="search-box">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="search" id="searchInput" placeholder="नाम, जिल्ला, दल, फोन वा इमेल खोज्नुहोस्…" aria-label="सदस्य खोज्नुहोस्" autocomplete="off">
+      <span class="kbd-hint">Ctrl+K</span>
+    </div>
+  </div>
+
+  <div class="filter-bar">
+    <div class="select-field">
+      <select id="partyFilter" aria-label="दल अनुसार फिल्टर"></select>
+    </div>
+    <div class="house-toggle" id="houseToggle" role="group" aria-label="सदन अनुसार फिल्टर"></div>
+    <div class="sort-field select-field">
+      <select id="sortSelect" aria-label="क्रमबद्ध गर्नुहोस्">
+        <option value="name-asc">नाम (क-ज्ञ)</option>
+        <option value="name-desc">नाम (ज्ञ-क)</option>
+        <option value="district">जिल्ला अनुसार</option>
+        <option value="party">दल अनुसार</option>
+        <option value="house">सदन अनुसार</option>
+      </select>
+    </div>
+    <div class="alpha-row" id="alphaRow"></div>
+  </div>
+
+  <div class="results-info" id="resultsInfo"></div>
+
+  <div class="grid" id="memberGrid" aria-live="polite"></div>
+
+  <nav class="pagination" id="pagination" aria-label="पृष्ठ नेभिगेसन"></nav>
+</main>
+
+<footer class="site-footer" id="siteFooter"></footer>
+<button class="scroll-top" id="scrollTopBtn" aria-label="माथि जानुहोस्"></button>
+
+<script src="assets/js/app.js"></script>
+<script src="assets/js/filters.js"></script>
+<script>
+  APP.renderHeader("directory.html");
+  APP.renderFooter();
+  APP.initScrollTop();
+  APP.initKeyboardShortcuts();
+</script>
+</body>
+</html>
