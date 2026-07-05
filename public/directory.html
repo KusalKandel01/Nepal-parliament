@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="ne">
+<html lang="ne" translate="no">
 <head>
 <meta charset="UTF-8">
+<meta name="google" content="notranslate">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>सदस्य निर्देशिका | Member Directory — संघीय संसद सम्पर्क निर्देशिका</title>
 <meta name="description" content="नेपालको प्रतिनिधि सभा र राष्ट्रिय सभाका सबै ३३२ सदस्यहरू खोज्नुहोस् — नाम, जिल्ला, दल, फोन वा इमेलद्वारा फिल्टर गर्नुहोस्।">
@@ -29,9 +30,12 @@
 <link rel="manifest" href="manifest.json">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body>
+<body class="notranslate">
 <a class="skip-link" href="#main">मुख्य सामग्रीमा जानुहोस्</a>
+<div class="bg-atmosphere" aria-hidden="true"></div>
+<div class="bg-grain" aria-hidden="true"></div>
 <header class="site-header" id="siteHeader"></header>
+<div class="subnav" id="subnav"></div>
 
 <main id="main">
   <div class="page-hero page-hero-flush">
@@ -83,6 +87,7 @@
 <script src="assets/js/filters.js"></script>
 <script>
   APP.renderHeader("directory.html");
+  APP.renderSubnav("सदस्य निर्देशिका", "index.html", "गृहपृष्ठ");
   APP.renderFooter();
   APP.initScrollTop();
   APP.initKeyboardShortcuts();

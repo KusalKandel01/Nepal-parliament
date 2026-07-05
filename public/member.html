@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="ne">
+<html lang="ne" translate="no">
 <head>
 <meta charset="UTF-8">
+<meta name="google" content="notranslate">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title id="pageTitle">सदस्य प्रोफाइल | संघीय संसद सम्पर्क निर्देशिका</title>
 <meta name="description" id="pageDescription" content="संसद सदस्यको पूर्ण सम्पर्क प्रोफाइल — फोन, इमेल, जिल्ला र राजनीतिक दल।">
@@ -25,16 +26,15 @@
 <link rel="manifest" href="manifest.json">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body>
+<body class="notranslate">
 <a class="skip-link" href="#main">मुख्य सामग्रीमा जानुहोस्</a>
+<div class="bg-atmosphere" aria-hidden="true"></div>
+<div class="bg-grain" aria-hidden="true"></div>
 <header class="site-header" id="siteHeader"></header>
+<div class="subnav" id="subnav"></div>
 
 <main id="main">
   <div class="profile-hero">
-    <a class="back-link" href="directory.html">
-      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-      निर्देशिकामा फर्कनुहोस्
-    </a>
     <div id="profileMount">
       <div class="loading-state"><div class="spinner"></div>प्रोफाइल लोड हुँदैछ…</div>
     </div>
@@ -47,6 +47,7 @@
 <script src="assets/js/member.js"></script>
 <script>
 APP.renderHeader("directory.html");
+APP.renderSubnav("सदस्य प्रोफाइल", "directory.html", "सदस्य निर्देशिका");
 APP.renderFooter();
 </script>
 </body>

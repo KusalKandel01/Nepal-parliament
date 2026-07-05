@@ -7,7 +7,7 @@ const APP = (() => {
   const DATA_BASE = "/assets/data/";
   // Bump this whenever assets/data/*.json changes so returning visitors get
   // fresh data immediately instead of waiting out the Cache-Control max-age.
-  const DATA_VERSION = "2083-v1.1";
+  const DATA_VERSION = "2083-v1.2";
   const cache = {};
 
   async function loadJSON(name) {
@@ -220,6 +220,25 @@ const APP = (() => {
     return text ? `<span lang="en">${escapeHtml(text)}</span>` : "";
   }
 
+  /* ---------------- Breadcrumb / back-bar for interior pages ---------------- */
+  function renderSubnav(currentLabelNe, backHref = "directory.html", backLabelNe = "सदस्य निर्देशिका") {
+    const mount = document.getElementById("subnav");
+    if (!mount) return;
+    mount.innerHTML = `
+      <div class="container subnav-inner">
+        <a class="subnav-back" href="${backHref}">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          फर्कनुहोस्
+        </a>
+        <nav class="subnav-crumbs" aria-label="Breadcrumb">
+          <a href="index.html">गृहपृष्ठ</a>
+          <span class="sep" aria-hidden="true">/</span>
+          ${backHref !== "index.html" ? `<a href="${backHref}">${backLabelNe}</a><span class="sep" aria-hidden="true">/</span>` : ""}
+          <span class="current" aria-current="page">${currentLabelNe}</span>
+        </nav>
+      </div>`;
+  }
+
   function renderFooter() {
     const mount = document.getElementById("siteFooter");
     if (!mount) return;
@@ -390,7 +409,7 @@ const APP = (() => {
 
   return {
     loadJSON, debounce, escapeHtml, highlight, partyColorVar, resolvePartyColor, PARTY_LABEL_SHORT,
-    initTheme, toggleTheme, renderHeader, renderFooter, initScrollTop,
+    initTheme, toggleTheme, renderHeader, renderSubnav, renderFooter, initScrollTop,
     initKeyboardShortcuts, toast, announce, enSpan, copyText, whatsappLink, vCard, downloadFile,
     initServiceWorker, initStickyFilterBar, initLangToggle, skeletonCards, ICONS
   };

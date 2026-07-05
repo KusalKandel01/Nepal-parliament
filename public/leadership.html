@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="ne">
+<html lang="ne" translate="no">
 <head>
 <meta charset="UTF-8">
+<meta name="google" content="notranslate">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>नेतृत्व | Leadership — संघीय संसद सम्पर्क निर्देशिका</title>
 <meta name="description" content="सभामुख, उपसभामुख, राष्ट्रिय सभा अध्यक्ष, उपाध्यक्ष र प्रधानमन्त्रीको आधिकारिक सम्पर्क कार्यालय जानकारी।">
@@ -29,9 +30,12 @@
 <link rel="manifest" href="manifest.json">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body>
+<body class="notranslate">
 <a class="skip-link" href="#main">मुख्य सामग्रीमा जानुहोस्</a>
+<div class="bg-atmosphere" aria-hidden="true"></div>
+<div class="bg-grain" aria-hidden="true"></div>
 <header class="site-header" id="siteHeader"></header>
+<div class="subnav" id="subnav"></div>
 
 <main id="main">
   <div class="page-hero">
@@ -65,6 +69,7 @@
 <script src="assets/js/leadership.js"></script>
 <script>
 APP.renderHeader("leadership.html");
+APP.renderSubnav("नेतृत्व", "index.html", "गृहपृष्ठ");
 APP.renderFooter();
 APP.initScrollTop();
 </script>

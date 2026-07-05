@@ -38,6 +38,7 @@
   /* ---- Dynamic SEO: title, description, canonical, OG, Person schema ---- */
   document.title = `${m.name_ne} | संघीय संसद सम्पर्क निर्देशिका`;
   document.getElementById("pageTitle").textContent = document.title;
+  APP.renderSubnav(m.name_ne, "directory.html", "सदस्य निर्देशिका");
   const desc = `${m.name_en || m.name_ne} — ${m.party_ne || ""}, ${m.district || ""}. ${m.house === "HoR" ? "House of Representatives" : "National Assembly"} member contact: phone, email.`;
   document.getElementById("pageDescription").setAttribute("content", desc);
   document.getElementById("ogTitle").setAttribute("content", document.title);

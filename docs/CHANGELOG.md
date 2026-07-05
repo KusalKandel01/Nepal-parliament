@@ -3,6 +3,17 @@
 All notable changes to this project are documented here.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
+## [1.2.0] — 2026-07-05
+
+### Fixed
+- **Data corruption via browser auto-translate:** Chrome's automatic page translation was mangling single Devanagari characters (avatar initials, alphabet filter buttons) into nonsense English fragments ("And", "No", "Come on."), and — more seriously — mistranslating real members' names (e.g. "Ruvi Kumari" rendered as "Ruby Kumari"). Disabled Google Translate site-wide via `<meta name="google" content="notranslate">`, `translate="no"` on `<html>`, and a `notranslate` class on `<body>`, since the site already provides its own English names (`name_en`) alongside Nepali — automatic translation was redundant at best and factually wrong at worst.
+- Interior pages had no consistent way back to the directory/homepage without scrolling all the way up to the sticky header.
+
+### Added
+- A sticky breadcrumb/back bar (`renderSubnav()`) beneath the header on every interior page (directory, member, leadership, committees, statistics, downloads, about), showing "← फर्कनुहोस्" plus a Home / Section breadcrumb trail. `member.html` updates its breadcrumb with the actual member's name once loaded.
+- Layered atmospheric background (`.bg-atmosphere` + `.bg-grain`) — soft gold/navy gradient glows and a subtle noise-grain texture — replacing the previous flat single-color background, applied site-wide via fixed-position layers so it doesn't interfere with content.
+- Elevated "3D" card treatment: deeper multi-layer shadows and a subtle lift + tilt on hover for member/leader/committee/about cards (respects `prefers-reduced-motion`).
+
 ## [1.1.1] — 2026-07-05 — Critical hotfix
 
 ### Fixed

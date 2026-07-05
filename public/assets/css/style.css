@@ -846,6 +846,147 @@ table.contact-table a { color: var(--party-rsp); }
 .footer-links { display: flex; gap: 18px; flex-wrap: wrap; }
 
 /* ---------------------------------------------------------
+   Sub-navigation: back link + breadcrumb bar on interior pages
+   --------------------------------------------------------- */
+.subnav {
+  background: var(--surface);
+  border-bottom: 1px solid var(--surface-border);
+  position: sticky;
+  top: var(--header-h);
+  z-index: 39;
+}
+.subnav-inner {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 10px 24px;
+  flex-wrap: wrap;
+}
+.subnav-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--ink);
+  background: var(--bg);
+  border: 1px solid var(--surface-border-strong);
+  padding: 6px 14px 6px 10px;
+  border-radius: 100px;
+  transition: border-color 0.15s, transform 0.15s;
+  flex-shrink: 0;
+}
+.subnav-back:hover { border-color: var(--gold); transform: translateX(-2px); }
+.subnav-back svg { width: 15px; height: 15px; }
+.subnav-crumbs {
+  font-size: 0.8rem;
+  color: var(--ink-faint);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.subnav-crumbs a { color: var(--ink-muted); }
+.subnav-crumbs a:hover { color: var(--gold); }
+.subnav-crumbs .current { color: var(--ink); font-weight: 600; }
+.subnav-crumbs .sep { color: var(--ink-faint); }
+
+/* ---------------------------------------------------------
+   Atmosphere: layered gradient glow + noise-grain + depth
+   Replaces the previously flat single-color background with
+   a subtle multi-layer effect (no external images required).
+   --------------------------------------------------------- */
+.bg-atmosphere {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+.bg-atmosphere::before,
+.bg-atmosphere::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.5;
+}
+.bg-atmosphere::before {
+  width: 60vw; height: 60vw;
+  top: -20vw; left: -15vw;
+  background: radial-gradient(circle, rgba(201,162,39,0.16), transparent 70%);
+}
+.bg-atmosphere::after {
+  width: 55vw; height: 55vw;
+  bottom: -25vw; right: -15vw;
+  background: radial-gradient(circle, rgba(11,26,46,0.10), transparent 70%);
+}
+[data-theme="dark"] .bg-atmosphere::after {
+  background: radial-gradient(circle, rgba(216,178,76,0.08), transparent 70%);
+}
+.bg-grain {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.025;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+[data-theme="dark"] .bg-grain { opacity: 0.05; }
+
+/* ---------------------------------------------------------
+   3D-feeling elevated card treatment
+   --------------------------------------------------------- */
+.member-card, .leader-card, .committee-card, .about-card, .panel, .profile-card {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.member-card:hover {
+  transform: translateY(-5px) rotateX(1.5deg);
+  box-shadow: 0 20px 40px -12px rgba(15,28,46,0.22), 0 4px 10px rgba(15,28,46,0.10);
+}
+[data-theme="dark"] .member-card:hover {
+  box-shadow: 0 20px 40px -12px rgba(0,0,0,0.6), 0 4px 10px rgba(0,0,0,0.4);
+}
+.about-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.about-card::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(201,162,39,0.06), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.about-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--gold);
+}
+.about-card:hover::before { opacity: 1; }
+.leader-card, .committee-card, .panel {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.leader-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+@media (prefers-reduced-motion: reduce) {
+  .member-card:hover, .about-card:hover, .leader-card:hover { transform: none; }
+}
+
+/* Emblem gets a subtle 3D "coin" treatment instead of flat circle */
+.brand-crest {
+  box-shadow:
+    0 2px 4px rgba(0,0,0,0.3),
+    inset 0 1px 1px rgba(255,255,255,0.4),
+    inset 0 -2px 3px rgba(0,0,0,0.25);
+}
+
+/* ---------------------------------------------------------
    Skip link (accessibility)
    --------------------------------------------------------- */
 .skip-link {
@@ -1092,12 +1233,6 @@ mark {
 .btn.primary { background: var(--navy); border-color: var(--navy); color: #fff; }
 .btn.primary:hover { background: var(--navy-soft); }
 .btn.whatsapp-btn { background: #25D366; border-color: #25D366; color: #fff; }
-
-.back-link {
-  display: inline-flex; align-items: center; gap: 6px;
-  color: var(--ink-muted); font-size: 0.85rem; margin-bottom: 16px;
-}
-.back-link:hover { color: var(--gold); }
 
 /* ---------------------------------------------------------
    Leadership page
