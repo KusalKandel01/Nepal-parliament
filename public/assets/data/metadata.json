@@ -1,0 +1,32 @@
+{
+ "title_ne": "संघीय संसद सचिवालय टेलिफोन डाइरेक्ट्री २०८३",
+ "title_en": "Federal Parliament Secretariat Telephone Directory 2083",
+ "source": "Federal Parliament Secretariat, Singha Durbar, Kathmandu; cross-referenced with hr.parliament.gov.np and na.parliament.gov.np",
+ "generated_at": "2026-07-03",
+ "total_members": 332,
+ "houses": {
+  "HoR": 275,
+  "NA": 57
+ },
+ "party_codes": {
+  "RSP": "राष्ट्रिय स्वतन्त्र पार्टी",
+  "NC": "नेपाली कांग्रेस",
+  "UML": "नेपाल कम्युनिष्ट पार्टी (एमाले)",
+  "MLM": "नेपाली कम्युनिष्ट पार्टी",
+  "RPP": "राष्ट्रिय प्रजातन्त्र पार्टी",
+  "SP": "श्रम संस्कृति पार्टी",
+  "JSP": "जनता समाजवादी पार्टी",
+  "LSP": "लोकतान्त्रिक समाजवादी पार्टी",
+  "IND": "स्वतन्त्र",
+  "NOM": "मनोनीत",
+  "OTH": "अन्य"
+ },
+ "data_notes": [
+  "Names and districts sourced from an authoritative CSV cross-reference (correct Unicode Devanagari), not the raw PDF text layer, which has a broken font ToUnicode CMap that silently corrupts certain consonants.",
+  "Phone numbers and email addresses were extracted from the PDF text layer (digits/Latin text are not affected by the font corruption) and cross-matched to each member by page position.",
+  "Photos sourced from the official hr.parliament.gov.np and na.parliament.gov.np member directories.",
+  "8 of 332 members have no phone number on file in the source directory (left null rather than guessed).",
+  "Rashtriya Sabha serial number 14 is genuinely absent from the source PDF (not a parsing error)."
+ ],
+ "data_version": "2083-v1.1"
+}
