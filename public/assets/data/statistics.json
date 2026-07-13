@@ -1,0 +1,56 @@
+{
+ "generated_at": "2026-07-03",
+ "total_members": 332,
+ "by_house": {
+  "HoR": 275,
+  "NA": 57
+ },
+ "by_party": {
+  "RSP": 183,
+  "SP": 7,
+  "NC": 63,
+  "UML": 34,
+  "RPP": 5,
+  "MLM": 33,
+  "IND": 1,
+  "NOM": 3,
+  "JSP": 3
+ },
+ "party_labels": {
+  "RSP": "राष्ट्रिय स्वतन्त्र पार्टी",
+  "NC": "नेपाली कांग्रेस",
+  "UML": "नेपाल कम्युनिष्ट पार्टी (एमाले)",
+  "MLM": "नेपाली कम्युनिष्ट पार्टी",
+  "RPP": "राष्ट्रिय प्रजातन्त्र पार्टी",
+  "SP": "श्रम संस्कृति पार्टी",
+  "JSP": "जनता समाजवादी पार्टी",
+  "LSP": "लोकतान्त्रिक समाजवादी पार्टी",
+  "IND": "स्वतन्त्र",
+  "NOM": "मनोनीत",
+  "OTH": "अन्य"
+ },
+ "top_districts": {
+  "Kathmandu": 23,
+  "Jhapa": 13,
+  "Morang": 13,
+  "Sunsari": 9,
+  "Mahottari": 9,
+  "Rupandehi": 8,
+  "Dang": 8,
+  "Siraha": 8,
+  "कर्णाली": 8,
+  "लुम्बिनी": 8,
+  "Kailali": 7,
+  "Kanchanpur": 7,
+  "Lalitpur": 7,
+  "Dhanusa": 7,
+  "सुदूरपश्चिम": 7
+ },
+ "data_completeness": {
+  "with_phone": 324,
+  "without_phone": 8,
+  "with_email": 282,
+  "without_email": 50,
+  "with_photo": 332
+ }
+}
