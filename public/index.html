@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ne" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>संघीय संसद सम्पर्क निर्देशिका | Federal Parliament Contact Directory — Nepal</title>
+<meta name="description" content="नेपालको संघीय संसदका ३३२ सांसदहरूको आधिकारिक, अन्तरक्रियात्मक सम्पर्क निर्देशिका।">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Noto+Serif+Devanagari:wght@500;700&family=IBM+Plex+Sans:wght@400;500;600&family=Noto+Sans+Devanagari:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="icon" href="assets/images/emblem.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/immersive.css">
+<meta name="theme-color" content="#0D1117">
+</head>
+<body>
+
+<canvas id="ambient-canvas"></canvas>
+
+<header class="site-header">
+  <div class="brand">संघीय संसद &nbsp;·&nbsp; <strong>Federal Parliament Directory</strong></div>
+  <nav>
+    <a href="directory.html">Directory</a>
+    <a href="leadership.html">Leadership</a>
+    <a href="committees.html">Committees</a>
+    <a href="statistics.html">Statistics</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero stage">
+    <div class="wrap hero-inner">
+      <div class="hero-copy">
+        <div class="eyebrow">332 seats · 2 houses · 1 chamber</div>
+        <h1>
+          <span class="ne">प्रत्येक सिट, एक जनप्रतिनिधि</span>
+          <span class="en">Every seat, a representative</span>
+        </h1>
+        <p class="lede">The complete, cross-verified contact directory of Nepal's Federal Parliament — House of Representatives and National Assembly. Search any member, call their office, or explore the chamber below exactly as it's seated.</p>
+
+        <div class="hero-search">
+          <input id="hero-search-input" type="text" placeholder="Search by name or district — नाम वा जिल्ला खोज्नुहोस्" autocomplete="off">
+          <div id="hero-search-results" class="results"></div>
+        </div>
+
+        <div class="hero-cta">
+          <a href="directory.html" class="btn primary">Open full directory →</a>
+          <a href="downloads.html" class="btn">Download CSV / JSON</a>
+        </div>
+      </div>
+
+      <div class="chamber-hint">
+        <p class="chamber-caption">You're standing inside the chamber. Drag to look around · hover any seat to see who sits there · click to open their profile.</p>
+        <div class="legend">
+          <span class="item"><span class="swatch" style="background:#A6303F"></span>NC</span>
+          <span class="item"><span class="swatch" style="background:#C9A227"></span>RSP</span>
+          <span class="item"><span class="swatch" style="background:#3D5799"></span>UML</span>
+          <span class="item"><span class="swatch" style="background:#B5493A"></span>MLM</span>
+          <span class="item"><span class="swatch" style="background:#5B7A6E"></span>RPP</span>
+          <span class="item"><span class="swatch" style="background:#8D8D8D"></span>Other</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stage" data-reveal>
+    <div class="wrap">
+      <div class="stat-grid">
+        <div class="stat-cell"><div class="num" id="stat-total">—</div><div class="label">Total members</div></div>
+        <div class="stat-cell"><div class="num" id="stat-hor">—</div><div class="label">House of Representatives</div></div>
+        <div class="stat-cell"><div class="num" id="stat-na">—</div><div class="label">National Assembly</div></div>
+        <div class="stat-cell"><div class="num" id="stat-committees">—</div><div class="label">Parliamentary committees</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stage">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <div class="eyebrow">Composition</div>
+        <h2>Who holds the chamber</h2>
+        <p>Every party's share of all 332 seats, House and National Assembly combined.</p>
+      </div>
+      <div id="party-bars" class="party-bars" data-reveal></div>
+    </div>
+  </section>
+
+  <section class="stage">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <div class="eyebrow">Leadership</div>
+        <h2>Speaker, Deputy Speaker & chamber chairs</h2>
+        <p>Direct office lines for the five leadership seats of the Federal Parliament.</p>
+      </div>
+      <div id="lead-grid" class="lead-grid" data-reveal></div>
+    </div>
+  </section>
+
+  <section class="stage closing" data-reveal>
+    <div class="wrap">
+      <div class="eyebrow" style="justify-content:center">16 committees · 10 party offices</div>
+      <h2>Reach the whole institution, not just the roster.</h2>
+      <div class="hero-cta" style="justify-content:center">
+        <a href="committees.html" class="btn primary">Browse committees →</a>
+        <a href="about.html" class="btn">How this data was verified</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  Federal Parliament Secretariat, Singha Durbar, Kathmandu · Data cross-referenced with hr.parliament.gov.np &amp; na.parliament.gov.np · Independent civic-tech project
+</footer>
+
+<script src="assets/vendor/three.min.js"></script>
+<script src="assets/vendor/three-addons.js"></script>
+<script src="assets/vendor/gsap.min.js"></script>
+<script src="assets/vendor/ScrollTrigger.min.js"></script>
+<script src="assets/js/chamber3d.js"></script>
+</body>
+</html>
