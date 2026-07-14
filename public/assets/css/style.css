@@ -508,7 +508,7 @@ a { color: inherit; text-decoration: none; }
   overflow: hidden;
   box-shadow: var(--shadow-sm);
 }
-.avatar img { width: 100%; height: 100%; object-fit: cover; }
+.avatar img { width: 100%; height: 100%; object-fit: cover; filter: url(#sharpen-photo) contrast(1.06) saturate(1.04); }
 
 .card-body { flex: 1; min-width: 0; padding-top: 2px; }
 
@@ -1197,7 +1197,7 @@ mark {
   font-family: var(--font-display); font-weight: 700; font-size: 2.2rem; color: #fff;
   overflow: hidden; flex-shrink: 0; box-shadow: var(--shadow-md);
 }
-.profile-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.profile-avatar img { width: 100%; height: 100%; object-fit: cover; filter: url(#sharpen-photo) contrast(1.06) saturate(1.04); }
 .profile-name { font-family: var(--font-display); font-size: 1.6rem; font-weight: 700; margin: 0 0 4px; }
 .profile-name .en { display: block; font-family: var(--font-ui); font-weight: 400; font-size: 0.95rem; color: var(--ink-muted); }
 .profile-party { font-size: 0.9rem; font-weight: 600; color: var(--party-color, var(--gold)); }
