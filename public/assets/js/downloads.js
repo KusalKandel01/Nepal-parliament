@@ -30,3 +30,14 @@ document.querySelectorAll(".download-btn").forEach(btn => {
     }
   });
 });
+
+/* ---- Page bootstrap (was an inline <script> in downloads.html; moved here
+   because the site's CSP is script-src 'self' with no 'unsafe-inline') ---- */
+APP.renderHeader("downloads.html");
+APP.renderSubnav("nav_downloads", "index.html", "nav_home");
+APP.renderFooter();
+APP.initScrollTop();
+APP.loadJSON("metadata.json").then(meta => {
+  document.getElementById("lastUpdated").textContent = meta.generated_at || "—";
+  document.getElementById("dataVersion").textContent = meta.data_version || "2083-v1";
+}).catch(() => {});

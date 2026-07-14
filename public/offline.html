@@ -17,7 +17,7 @@
 <link rel="apple-touch-icon" sizes="180x180" href="assets/images/icon-180.png">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body class="notranslate">
+<body class="notranslate" data-page="">
 <a class="skip-link" href="#main">मुख्य सामग्रीमा जानुहोस्</a>
 <div class="bg-atmosphere" aria-hidden="true"></div>
 <div class="bg-grain" aria-hidden="true"></div>
@@ -29,13 +29,13 @@
     <p>इन्टरनेट जडान उपलब्ध छैन। पहिले लोड गरिएका पृष्ठहरू र डाटा अझै हेर्न मिल्छ — नयाँ पृष्ठहरूका लागि पुनः जडान गर्नुहोस्।</p>
     <div class="hero-actions">
       <a class="btn primary" href="index.html">गृहपृष्ठ प्रयास गर्नुहोस्</a>
-      <button class="btn" onclick="location.reload()">पुनः लोड गर्नुहोस्</button>
+      <button class="btn" id="reloadBtn">पुनः लोड गर्नुहोस्</button>
     </div>
   </div>
 </main>
 <footer class="site-footer" id="siteFooter"></footer>
 <script src="assets/js/i18n.js"></script>
 <script src="assets/js/app.js"></script>
-<script>APP.renderHeader(""); APP.renderFooter();</script>
+<script src="assets/js/page-boot.js"></script>
 </body>
 </html>

@@ -84,7 +84,7 @@
   const color = APP.partyColorVar(m.party_code);
   const initial = (m.name_ne || "?").replace(/^मा\.\s*/, "").replace(/^डा\.\s*/, "").trim().charAt(0);
   const avatarInner = m.photo
-    ? `<img src="${m.photo}" alt="" width="96" height="96" onerror="this.parentElement.innerHTML='<span translate=\\'no\\'>${initial}</span>'">`
+    ? `<img src="${m.photo}" alt="" width="96" height="96" data-fallback-initial="${APP.escapeHtml(initial)}">`
     : `<span translate="no">${initial}</span>`;
 
   const primaryName = lang === "en" ? (m.name_en || m.name_ne) : m.name_ne;
@@ -162,3 +162,11 @@
   });
   document.getElementById("printProfileBtn").addEventListener("click", () => window.print());
 })();
+
+/* ---- Page bootstrap (was an inline <script> in member.html; moved here
+   because the site's CSP is script-src 'self' with no 'unsafe-inline') ----
+   Renders a "loading" placeholder subnav immediately; the IIFE above
+   overwrites it with the real member name once members.json resolves. */
+APP.renderHeader("directory.html");
+APP.renderSubnav("loading", "directory.html", "nav_directory");
+APP.renderFooter();

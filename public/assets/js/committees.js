@@ -84,3 +84,10 @@
 
   render("all");
 })();
+
+/* ---- Page bootstrap (was an inline <script> in committees.html; moved here
+   because the site's CSP is script-src 'self' with no 'unsafe-inline') ---- */
+APP.renderHeader("committees.html");
+APP.renderSubnav("nav_committees", "index.html", "nav_home");
+APP.renderFooter();
+APP.initScrollTop();

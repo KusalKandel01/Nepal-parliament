@@ -66,3 +66,10 @@
 
   APP.announce(`${data.leadership.length}`);
 })();
+
+/* ---- Page bootstrap (was an inline <script> in leadership.html; moved here
+   because the site's CSP is script-src 'self' with no 'unsafe-inline') ---- */
+APP.renderHeader("leadership.html");
+APP.renderSubnav("nav_leadership", "index.html", "nav_home");
+APP.renderFooter();
+APP.initScrollTop();

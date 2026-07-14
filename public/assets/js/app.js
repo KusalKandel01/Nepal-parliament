@@ -359,6 +359,23 @@ const APP = (() => {
     // no-op placeholder for future scroll-reveal; respects reduced motion by default via CSS
   }
 
+  /* ---------------- Photo fallback (CSP-safe, replaces inline onerror=) ----------------
+     Member photo <img> tags carry data-fallback-initial instead of an inline onerror
+     handler, since the site's Content-Security-Policy (script-src 'self', no
+     'unsafe-inline') blocks inline event handler attributes outright. The "error"
+     event doesn't bubble, so this listener is attached in the capture phase on
+     document, which does see it — one delegated listener covers every photo on
+     every page, including ones injected later via innerHTML (directory cards,
+     member profile, etc.). */
+  function initPhotoFallback() {
+    document.addEventListener("error", (e) => {
+      const img = e.target;
+      if (img && img.tagName === "IMG" && img.dataset && img.dataset.fallbackInitial !== undefined) {
+        img.parentElement.innerHTML = `<span translate="no">${img.dataset.fallbackInitial}</span>`;
+      }
+    }, true);
+  }
+
   /* ---------------- Service worker registration (offline support) ---------------- */
   function initServiceWorker() {
     if ("serviceWorker" in navigator) {
@@ -414,13 +431,15 @@ const APP = (() => {
     loadJSON, debounce, escapeHtml, highlight, partyColorVar, resolvePartyColor, PARTY_LABEL_SHORT,
     initTheme, toggleTheme, renderHeader, renderSubnav, renderFooter, initScrollTop,
     initKeyboardShortcuts, toast, announce, enSpan, copyText, whatsappLink, vCard, downloadFile,
-    initServiceWorker, initStickyFilterBar, initLangToggle, skeletonCards, ICONS, t, getLang
+    initServiceWorker, initStickyFilterBar, initLangToggle, skeletonCards, ICONS, t, getLang,
+    initPhotoFallback
   };
 })();
 
 // Apply saved theme before paint to avoid flash
 APP.initTheme();
 APP.initServiceWorker();
+APP.initPhotoFallback();
 // Sync <html lang> to the stored language preference immediately (avoids a
 // flash of the wrong lang attribute, which matters for screen readers).
 if (window.I18N_ENGINE) {

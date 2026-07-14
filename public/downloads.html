@@ -126,15 +126,5 @@
 <script src="assets/js/i18n.js"></script>
 <script src="assets/js/app.js"></script>
 <script src="assets/js/downloads.js"></script>
-<script>
-APP.renderHeader("downloads.html");
-APP.renderSubnav("nav_downloads", "index.html", "nav_home");
-APP.renderFooter();
-APP.initScrollTop();
-APP.loadJSON("metadata.json").then(meta => {
-  document.getElementById("lastUpdated").textContent = meta.generated_at || "—";
-  document.getElementById("dataVersion").textContent = meta.data_version || "2083-v1";
-}).catch(() => {});
-</script>
 </body>
 </html>

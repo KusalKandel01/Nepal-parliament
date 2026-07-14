@@ -65,3 +65,10 @@
 
   APP.announce(APP.t("chart_party_title"));
 })();
+
+/* ---- Page bootstrap (was an inline <script> in statistics.html; moved here
+   because the site's CSP is script-src 'self' with no 'unsafe-inline') ---- */
+APP.renderHeader("statistics.html");
+APP.renderSubnav("nav_statistics", "index.html", "nav_home");
+APP.renderFooter();
+APP.initScrollTop();

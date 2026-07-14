@@ -113,12 +113,34 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 600; margin: 0; lett
   color: var(--parchment-dim);
 }
 .site-header .brand strong { color: var(--parchment); font-weight: 600; }
-.site-header nav { display: flex; gap: var(--space-3); font-size: 0.85rem; }
+.site-header nav { display: flex; align-items: center; gap: var(--space-3); font-size: 0.85rem; }
 .site-header nav a { text-decoration: none; color: var(--parchment-dim); transition: color 0.25s; position: relative; }
 .site-header nav a:hover { color: var(--brass); }
 .site-header nav a:focus-visible, a:focus-visible, button:focus-visible {
   outline: 2px solid var(--brass); outline-offset: 3px;
 }
+
+/* -- Compact language toggle (homepage header) -- */
+.lang-toggle-mini {
+  display: flex;
+  border: 1px solid var(--ink-line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  pointer-events: auto;
+}
+.lang-toggle-mini button {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  padding: 0.3em 0.65em;
+  background: transparent;
+  border: none;
+  color: var(--parchment-dim);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.lang-toggle-mini button:hover { color: var(--parchment); }
+.lang-toggle-mini button.active { background: var(--brass); color: var(--ink); font-weight: 600; }
 
 /* ==========================================================================
    HERO — roll call

@@ -186,7 +186,7 @@
     const color = APP.partyColorVar(m.party_code);
     const initial = (m.name_ne || "?").replace(/^मा\.\s*/, "").replace(/^डा\.\s*/, "").trim().charAt(0);
     const avatarInner = m.photo
-      ? `<img src="${m.photo}" alt="" width="52" height="52" loading="lazy" onerror="this.parentElement.innerHTML='${initial}'">`
+      ? `<img src="${m.photo}" alt="" width="52" height="52" loading="lazy" data-fallback-initial="${APP.escapeHtml(initial)}">`
       : `<span translate="no">${initial}</span>`;
     const phone = m.phones && m.phones[0];
     const email = m.emails && m.emails[0];
@@ -344,3 +344,13 @@
 
   render();
 })();
+
+/* ---- Page bootstrap (was an inline <script> in directory.html; moved here
+   because the site's CSP is script-src 'self' with no 'unsafe-inline', which
+   silently blocks inline <script> blocks in the browser) ---- */
+APP.renderHeader("directory.html");
+APP.renderSubnav("nav_directory", "index.html", "nav_home");
+APP.renderFooter();
+APP.initScrollTop();
+APP.initKeyboardShortcuts();
+APP.initStickyFilterBar();

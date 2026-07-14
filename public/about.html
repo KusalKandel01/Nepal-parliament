@@ -30,7 +30,7 @@
 <link rel="manifest" href="manifest.json">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body class="notranslate">
+<body class="notranslate" data-page="about.html" data-subnav-key="nav_about" data-back-href="index.html" data-back-key="nav_home" data-scroll-top>
 <a class="skip-link" href="#main">मुख्य सामग्रीमा जानुहोस्</a>
 <div class="bg-atmosphere" aria-hidden="true"></div>
 <div class="bg-grain" aria-hidden="true"></div>
@@ -104,11 +104,6 @@
 
 <script src="assets/js/i18n.js"></script>
 <script src="assets/js/app.js"></script>
-<script>
-APP.renderHeader("about.html");
-APP.renderSubnav("nav_about", "index.html", "nav_home");
-APP.renderFooter();
-APP.initScrollTop();
-</script>
+<script src="assets/js/page-boot.js"></script>
 </body>
 </html>
