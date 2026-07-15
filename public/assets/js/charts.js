@@ -43,7 +43,7 @@ const CHARTS = (() => {
         <g mask="url(#donut-hole-${mountEl.id})">${paths}</g>
         <circle cx="${cx}" cy="${cy}" r="${inner}" fill="none"/>
         <text x="${cx}" y="${cy - 4}" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="700" font-size="${size*0.13}" fill="var(--ink)">${total}</text>
-        <text x="${cx}" y="${cy + 16}" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="${size*0.06}" fill="var(--ink-muted)">सदस्यहरू</text>
+        <text x="${cx}" y="${cy + 16}" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="${size*0.06}" fill="var(--ink-muted)">${opts.centerLabel || "सदस्यहरू"}</text>
       </svg>
     `;
     mountEl.innerHTML = svg;

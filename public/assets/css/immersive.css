@@ -93,7 +93,16 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 600; margin: 0; lett
 }
 #ambient-canvas:active { cursor: grabbing; }
 
-.chamber-hint { margin-top: var(--space-4); pointer-events: none; }
+.chamber-hint {
+  margin-top: var(--space-4);
+  pointer-events: none;
+  background: rgba(9,12,18,0.7);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(244,230,208,0.08);
+  border-radius: var(--radius);
+  padding: var(--space-3);
+}
 .chamber-hint .legend { pointer-events: none; }
 
 /* -- Header -- */
@@ -182,11 +191,14 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 600; margin: 0; lett
 }
 
 .hero-copy {
-  background: linear-gradient(120deg, rgba(13,17,23,0.72) 0%, rgba(13,17,23,0.42) 65%, rgba(13,17,23,0) 100%);
-  backdrop-filter: blur(2px);
-  padding: var(--space-3) var(--space-3) var(--space-3) 0;
+  background: linear-gradient(120deg, rgba(9,12,18,0.88) 0%, rgba(9,12,18,0.82) 75%, rgba(9,12,18,0.6) 100%);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: var(--space-4);
   border-radius: var(--radius);
+  border: 1px solid rgba(244,230,208,0.08);
   max-width: 640px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.35);
 }
 .hero h1 {
   font-size: clamp(2.4rem, 5.4vw, 4.3rem);

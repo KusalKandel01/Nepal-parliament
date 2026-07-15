@@ -59,7 +59,7 @@
 
   tbody.innerHTML = data.party_offices.map(p => `
     <tr>
-      <td><strong translate="no">${p.party_code}</strong> — ${APP.escapeHtml(p.party_ne)}</td>
+      <td><strong translate="no">${p.party_code}</strong> — ${APP.escapeHtml(APP.partyLabelFor(p.party_code, p.party_ne))}</td>
       <td>${p.parliamentary_office ? `<a href="tel:${p.parliamentary_office.replace(/\D/g,'')}" translate="no">${p.parliamentary_office}</a>` : "—"}</td>
       <td translate="no">${p.staff_office || "—"}</td>
     </tr>

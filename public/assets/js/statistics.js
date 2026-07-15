@@ -25,16 +25,16 @@
 
   const partyEntries = Object.entries(stats.by_party).sort((a, b) => b[1] - a[1]);
   const segments = partyEntries.map(([code, val]) => ({
-    label: `${stats.party_labels[code] || code} (${code})`,
+    label: `${APP.partyLabelFor(code, stats.party_labels[code])} (${code})`,
     value: val,
     color: APP.resolvePartyColor(code)
   }));
-  CHARTS.donut(document.getElementById("partyDonut"), segments, { size: 200 });
+  CHARTS.donut(document.getElementById("partyDonut"), segments, { size: 200, centerLabel: APP.t("chart_members_label") });
 
   document.getElementById("partyLegend").innerHTML = partyEntries.map(([code, val]) => `
     <div class="legend-row">
       <span class="legend-swatch" style="background:${APP.resolvePartyColor(code)}"></span>
-      <span class="legend-label">${stats.party_labels[code] || code} <span class="code" translate="no">(${code})</span></span>
+      <span class="legend-label">${APP.partyLabelFor(code, stats.party_labels[code])} <span class="code" translate="no">(${code})</span></span>
       <strong>${val}</strong>
     </div>
   `).join("");

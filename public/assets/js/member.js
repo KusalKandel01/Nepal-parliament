@@ -39,7 +39,7 @@
   /* ---- Dynamic SEO: title, description, canonical, OG, Person schema ---- */
   document.title = `${m.name_ne} | संघीय संसद सम्पर्क निर्देशिका`;
   document.getElementById("pageTitle").textContent = document.title;
-  APP.renderSubnav(m.name_ne, "directory.html", "nav_directory");
+  APP.renderSubnav(lang === "en" ? (m.name_en || m.name_ne) : m.name_ne, "directory.html", "nav_directory");
   const desc = `${m.name_en || m.name_ne} — ${m.party_ne || ""}, ${m.district || ""}. ${m.house === "HoR" ? "House of Representatives" : "National Assembly"} member contact: phone, email.`;
   document.getElementById("pageDescription").setAttribute("content", desc);
   document.getElementById("ogTitle").setAttribute("content", document.title);
@@ -73,7 +73,7 @@
       committeeLinks = `
         <div class="detail-item detail-item-wide">
           <div class="k">${APP.t("profile_committee_chair")}</div>
-          <div class="v">${chaired.map(c => `<a href="committees.html">${APP.escapeHtml(c.name_ne)}</a>`).join(", ")}</div>
+          <div class="v">${chaired.map(c => `<a href="committees.html">${APP.escapeHtml(lang === "en" ? (c.name_en || c.name_ne) : c.name_ne)}</a>`).join(", ")}</div>
         </div>`;
     }
   } catch (e) {
@@ -141,7 +141,7 @@
     </div>
   `;
   document.querySelector(".profile-card").style.setProperty("--party-color", color);
-  APP.announce(`${m.name_ne}`);
+  APP.announce(`${lang === "en" ? (m.name_en || m.name_ne) : m.name_ne}`);
 
   if (phone) document.getElementById("waBtn").href = APP.whatsappLink(phone);
   document.getElementById("vcardBtn").addEventListener("click", () => {
