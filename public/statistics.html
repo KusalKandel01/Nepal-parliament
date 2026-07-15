@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ne" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>तथ्याङ्क | Statistics — संघीय संसद सम्पर्क निर्देशिका</title>
+<meta name="description" content="दलगत, सदनगत र जिल्लागत संसद सदस्य विभाजनको इन्टरएक्टिभ तथ्याङ्क र चार्टहरू।">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700&family=DM+Sans:wght@400;500;600;700&display=swap">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/images/icon-180.png">
+<meta name="theme-color" content="#F4F6F8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0F172A" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="संघीय संसद सम्पर्क निर्देशिका">
+<meta property="og:title" content="तथ्याङ्क | Statistics — संघीय संसद सम्पर्क निर्देशिका">
+<meta property="og:description" content="दलगत, सदनगत र जिल्लागत संसद सदस्य विभाजनको इन्टरएक्टिभ तथ्याङ्क र चार्टहरू।">
+<meta property="og:image" content="https://nepal-parliament-directory.vercel.app/assets/images/parliament.svg">
+<meta property="og:url" content="https://nepal-parliament-directory.vercel.app/statistics.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="तथ्याङ्क | Statistics — संघीय संसद सम्पर्क निर्देशिका">
+<meta name="twitter:description" content="दलगत, सदनगत र जिल्लागत संसद सदस्य विभाजनको इन्टरएक्टिभ तथ्याङ्क र चार्टहरू।">
+<link rel="alternate" hreflang="ne" href="https://nepal-parliament-directory.vercel.app/statistics.html">
+<link rel="alternate" hreflang="x-default" href="https://nepal-parliament-directory.vercel.app/statistics.html">
+<link rel="canonical" href="https://nepal-parliament-directory.vercel.app/statistics.html">
+<link rel="icon" href="assets/images/emblem.svg" type="image/svg+xml">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/images/icon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/images/icon-16.png">
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="assets/css/style.css?v=20260714b">
+</head>
+<body class="notranslate">
+<a class="skip-link" href="#main" data-i18n="skip_to_main">मुख्य सामग्रीमा जानुहोस्</a>
+<div class="bg-atmosphere" aria-hidden="true"></div>
+<div class="bg-grain" aria-hidden="true"></div>
+<header class="site-header" id="siteHeader"></header>
+<div class="subnav" id="subnav"></div>
+
+<main id="main">
+  <div class="page-hero">
+    <h1 data-i18n="page_statistics_title">तथ्याङ्क</h1>
+    <p data-i18n="page_statistics_lede">संघीय संसदको दलगत, सदनगत र जिल्लागत सदस्य विभाजन।</p>
+  </div>
+
+  <div class="stats-bar" id="statsBar"></div>
+
+  <div class="section">
+    <div class="chart-grid section-spaced-sm">
+      <div class="panel">
+        <h2>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
+          <span data-i18n="chart_party_title">दल अनुसार विभाजन</span>
+        </h2>
+        <div class="flex-gap-lg">
+          <div id="partyDonut" role="img" aria-label="दल अनुसार सदस्य विभाजन देखाउने डोनट चार्ट"></div>
+          <div id="partyLegend" class="w-min-200 flex-1"></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/></svg>
+          <span data-i18n="chart_house_title">सदन अनुसार विभाजन</span>
+        </h2>
+        <div id="houseColumns" role="img" aria-label="प्रतिनिधि सभा र राष्ट्रिय सभाको सदस्य संख्या तुलना गर्ने स्तम्भ चार्ट"></div>
+      </div>
+    </div>
+
+    <div class="panel section-spaced-sm">
+      <h2>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span data-i18n="chart_district_title">शीर्ष जिल्ला/प्रदेश (सदस्य संख्या अनुसार)</span>
+      </h2>
+      <div id="districtBars" role="img" aria-label="जिल्ला अनुसार सदस्य संख्या देखाउने बार चार्ट"></div>
+    </div>
+
+    <div class="panel section-spaced-sm">
+      <h2>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <span data-i18n="chart_completeness_title">डाटा पूर्णता</span>
+      </h2>
+      <div id="completenessBars" role="img" aria-label="फोन, इमेल र फोटो उपलब्धताको बार चार्ट"></div>
+      <p class="empty-note mt-10" id="missingPhoneNote"></p>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer" id="siteFooter"></footer>
+<button class="scroll-top" id="scrollTopBtn" aria-label="माथि जानुहोस्"></button>
+
+<script src="assets/js/i18n.js?v=20260714b"></script>
+<script src="assets/js/app.js?v=20260714b"></script>
+<script src="assets/js/charts.js?v=20260714b"></script>
+<script src="assets/js/statistics.js?v=20260714b"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+﻿id,name_ne,name_en,house,email,chair_ne,secretary_ne,chair_office,secretary_office
+CM0001,अर्थ समिति,Finance Committee,HoR,finc@parliament.gov.np,श्री कृष्णहरि बुढाथोकी,श्री लक्ष्मण अर्याल,01-4200497,01-4200233
+CM0002,अन्तर्राष्ट्रिय सम्बन्ध र पर्यटन समिति,International Relations & Tourism Committee,HoR,irc@parliament.gov.np,श्री सुम्निमा उदास,श्री निर्मला देवी लामिछाने,01-4200434,01-4200097
+CM0003,उद्योग तथा वाणिज्य श्रम तथा उपभोक्ता हित समिति,"Industry, Commerce, Labour & Consumer Welfare Committee",HoR,,श्री रहबर अन्सारी,,01-4200499,01-4200617
+CM0004,"कानून, न्याय तथा मानव अधिकार समिति","Law, Justice & Human Rights Committee",HoR,humanrights@parliament.gov.np,श्री समिक्षा बास्कोटा,श्री रामहरि थापा,01-4200495,01-4211744
+CM0005,"कृषि, सहकारी तथा प्राकृतिक स्रोत समिति","Agriculture, Cooperatives & Natural Resources Committee",HoR,coacn@parliament.gov.np,श्री अशोक कुमार चौधरी,श्री रेखा उपाध्याय खनाल,01-4200494,01-4200070
+CM0006,महिला तथा सामाजिक मामिला समिति,Women & Social Affairs Committee,HoR,wsoc@parliament.gov.np,श्री आकृती अवस्थी,श्री इन्द्र विलास पौडेल,01-4200492,01-4200493
+CM0007,राज्य व्यवस्था तथा सुशासन समिति,State Affairs & Good Governance Committee,HoR,sagc@parliament.gov.np,श्री हरि ढकाल,श्री विशाल सापकोटा,01-4200311,01-4200053
+CM0008,पूर्वाधार विकास समिति,Infrastructure Development Committee,HoR,dtc@parliament.gov.np,श्री आशिष गजुरेल,श्री उदय कुमार भण्डारी,01-4211763,01-4200121
+CM0009,"शिक्षा, स्वास्थ्य तथा सूचना प्रविधि समिति","Education, Health & Information Technology Committee",HoR,eahcommittee@parliament.gov.np,डा. ओजस्वी शेरचन,श्री दशरथ कमला,01-4200686,01-4200672
+CM0010,सार्वजनिक लेखा समिति,Public Accounts Committee,HoR,pacommittee@parliament.gov.np,श्री भरत बहादुर खड्का,श्री एकराम गिरी,01-4200206,01-4200612
+CM0011,"विकास, आर्थिक मामिला तथा सुशासन समिति","Development, Economic Affairs & Good Governance Committee",NA,digocommittee@parliament.gov.np,मा. कृष्ण प्रसाद पौडेल,डा. रोशनाथ पाण्डे,01-4211776,01-4200072
+CM0012,विधायन व्यवस्थापन समिति,Legislation Management Committee,NA,lmc@parliament.gov.np,मा. कृष्ण बहादुर रोकाया,श्री झलक शर्मा सापकोटा,01-4200178,01-4211131
+CM0013,सार्वजनिक नीति तथा प्रत्यायोजित विधायन समिति,Public Policy & Delegated Legislation Committee,NA,dl_study@parliament.gov.np,मा. पुजा चौधरी,श्री सञ्जय दाहाल,01-4200682,01-4200696
+CM0014,संघीयता सबलीकरण तथा राष्ट्रिय सरोकार समिति,Federalism Strengthening & National Concerns Committee,NA,nationalconcern@parliament.gov.np,मा. जयन्ती देवी राई,श्री कान्छा दुलाल,01-4211953,01-4200131
+CM0015,संसदीय सुनुवाई समिति,Parliamentary Hearing Committee,Joint,parl_hearing@parliament.gov.np,श्री बोध नारायण श्रेष्ठ,श्री तुल बहादुर काँडेल,01-4200411,01-4200133
+CM0016,"राज्यका निर्देशक सिद्धान्त, नीति र दायित्वको कार्यान्वयन अनुगमन तथा मूल्याङ्कन समिति","Directive Principles, Policies & Duties Implementation, Monitoring & Evaluation Committee",Joint,statedirective@parliament.gov.np,श्री गणेश काकी,श्री प्रकाश अधिकारी,01-4200496,01-4211735
