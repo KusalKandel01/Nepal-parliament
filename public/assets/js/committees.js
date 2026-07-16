@@ -41,11 +41,17 @@
     btn.textContent = `${tabLabels[key]} (${counts[key] || 0})`;
   });
 
-  function personMarkup(nameNe) {
+  function personMarkup(nameNe, nameEn) {
     if (!nameNe) return "N/A";
     const key = nameNe.replace(/^श्री\s*|^मा\.\s*|^डा\.\s*/, "").trim();
     const id = memberIndex[key];
-    return id ? `<a href="member.html?id=${id}">${APP.escapeHtml(nameNe)}</a>` : APP.escapeHtml(nameNe);
+    const showEn = lang === "en" && nameEn;
+    const label = APP.escapeHtml(showEn ? nameEn : nameNe);
+    const inner = id ? `<a href="member.html?id=${id}">${label}</a>` : label;
+    const unverifiedNote = (lang === "en" && !nameEn)
+      ? ` <span class="name-unverified" title="${APP.t("name_en_unverified_hint")}">${APP.t("name_en_unverified_badge")}</span>`
+      : "";
+    return inner + unverifiedNote;
   }
 
   function render(filter) {
@@ -63,8 +69,8 @@
         <h3>${APP.escapeHtml(primaryName)}<span class="committee-badge">${houseLabel[c.house]}</span>${!c.verified ? `<span class="needs-review">${APP.t("needs_review")}</span>` : ""}</h3>
         <div class="en" ${secondaryAttr}>${APP.escapeHtml(secondaryName)}</div>
         <div class="committee-people">
-          <div><div class="role">${APP.t("committee_chair_role")}</div>${personMarkup(c.chair_ne)} ${c.chair_office ? `· <a href="tel:${c.chair_office.replace(/\D/g,'')}" translate="no">${c.chair_office}</a>` : ""}</div>
-          ${c.secretary_ne ? `<div><div class="role">${APP.t("committee_secretary_role")}</div>${personMarkup(c.secretary_ne)} ${c.secretary_office ? `· <a href="tel:${c.secretary_office.replace(/\D/g,'')}" translate="no">${c.secretary_office}</a>` : ""}</div>` : ""}
+          <div><div class="role">${APP.t("committee_chair_role")}</div>${personMarkup(c.chair_ne, c.chair_en)} ${c.chair_office ? `· <a href="tel:${c.chair_office.replace(/\D/g,'')}" translate="no">${c.chair_office}</a>` : ""}</div>
+          ${c.secretary_ne ? `<div><div class="role">${APP.t("committee_secretary_role")}</div>${personMarkup(c.secretary_ne, c.secretary_en)} ${c.secretary_office ? `· <a href="tel:${c.secretary_office.replace(/\D/g,'')}" translate="no">${c.secretary_office}</a>` : ""}</div>` : ""}
           ${c.email ? `<div><div class="role">${APP.t("committee_email_role")}</div><a href="mailto:${c.email}" translate="no">${c.email}</a></div>` : ""}
         </div>
       </div>

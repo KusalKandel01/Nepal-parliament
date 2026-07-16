@@ -229,7 +229,7 @@
           </div>
         </div>
         <div class="card-meta">
-          <div class="meta-row">${APP.ICONS.pin}<span>${APP.highlight(m.district || APP.t("district_unspecified"), state.q)}</span></div>
+          <div class="meta-row">${APP.ICONS.pin}<span>${APP.highlight(APP.districtLabelFor(m.district) || APP.t("district_unspecified"), state.q)}</span></div>
           ${phone
             ? `<div class="meta-row">${APP.ICONS.phone}<a class="link" href="tel:+977${phone}" translate="no">${phone}</a></div>`
             : `<div class="meta-row empty">${APP.t("phone_unavailable")}</div>`}
