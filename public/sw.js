@@ -17,7 +17,7 @@
    a CDN, a Vercel rewrite, etc.) is introduced upstream.
    ============================================================ */
 
-const CACHE_VERSION = "npd-cache-v6";
+const CACHE_VERSION = "npd-cache-v7";
 const APP_SHELL = [
   "/",
   "/index.html",
@@ -30,21 +30,21 @@ const APP_SHELL = [
   "/downloads.html",
   "/about.html",
   "/offline.html",
-  "/assets/css/style.css?v=20260715a",
-  "/assets/css/immersive.css?v=20260715a",
-  "/assets/js/app.js?v=20260715a",
-  "/assets/js/i18n.js?v=20260715a",
-  "/assets/js/page-boot.js?v=20260715a",
-  "/assets/js/home.js?v=20260715a",
-  "/assets/js/houses.js?v=20260715a",
-  "/assets/js/filters.js?v=20260715a",
-  "/assets/js/member.js?v=20260715a",
-  "/assets/js/leadership.js?v=20260715a",
-  "/assets/js/committees.js?v=20260715a",
-  "/assets/js/statistics.js?v=20260715a",
-  "/assets/js/downloads.js?v=20260715a",
-  "/assets/js/search.js?v=20260715a",
-  "/assets/js/charts.js?v=20260715a",
+  "/assets/css/style.css?v=20260716a",
+  "/assets/css/immersive.css?v=20260716a",
+  "/assets/js/app.js?v=20260716a",
+  "/assets/js/i18n.js?v=20260716a",
+  "/assets/js/page-boot.js?v=20260716a",
+  "/assets/js/home.js?v=20260716a",
+  "/assets/js/houses.js?v=20260716a",
+  "/assets/js/filters.js?v=20260716a",
+  "/assets/js/member.js?v=20260716a",
+  "/assets/js/leadership.js?v=20260716a",
+  "/assets/js/committees.js?v=20260716a",
+  "/assets/js/statistics.js?v=20260716a",
+  "/assets/js/downloads.js?v=20260716a",
+  "/assets/js/search.js?v=20260716a",
+  "/assets/js/charts.js?v=20260716a",
   "/assets/images/emblem.svg",
 ];
 
