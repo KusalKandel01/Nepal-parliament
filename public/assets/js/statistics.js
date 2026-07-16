@@ -1,5 +1,5 @@
 /* ============================================================
-   statistics.js — powers statistics.html: donut/column/bar SVG
+   statistics.js, powers statistics.html: donut/column/bar SVG
    charts driven by statistics.json. Party colors are resolved
    once via APP.resolvePartyColor (single source of truth shared
    with filters.js/style.css) rather than a locally duplicated map.

@@ -1,5 +1,5 @@
 /* ============================================================
-   app.js — shared utilities: theme, nav, data loading, helpers
+   app.js, shared utilities: theme, nav, data loading, helpers
    Loaded on every page. No frameworks, no build step.
    ============================================================ */
 
@@ -336,7 +336,7 @@ const APP = (() => {
       toast(`${label} copied`);
       return true;
     } catch (e) {
-      toast("Copy failed — please copy manually");
+      toast("Copy failed, please copy manually");
       return false;
     }
   }
@@ -386,7 +386,7 @@ const APP = (() => {
      handler, since the site's Content-Security-Policy (script-src 'self', no
      'unsafe-inline') blocks inline event handler attributes outright. The "error"
      event doesn't bubble, so this listener is attached in the capture phase on
-     document, which does see it — one delegated listener covers every photo on
+     document, which does see it, one delegated listener covers every photo on
      every page, including ones injected later via innerHTML (directory cards,
      member profile, etc.). */
   function initPhotoFallback() {
@@ -422,7 +422,7 @@ const APP = (() => {
     io.observe(sentinel);
   }
 
-  /* ---------------- Language (ने/EN) — real first-party bilingual UI ---------------- */
+  /* ---------------- Language (ने/EN), real first-party bilingual UI ---------------- */
   function getLang() { return window.I18N_ENGINE ? window.I18N_ENGINE.getLang() : "ne"; }
   function t(key) { return window.I18N_ENGINE ? window.I18N_ENGINE.t(key) : key; }
 

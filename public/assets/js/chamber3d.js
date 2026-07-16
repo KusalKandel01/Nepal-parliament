@@ -1,4 +1,4 @@
-/* Nepal Federal Parliament — 3D Chamber
+/* Nepal Federal Parliament, 3D Chamber
    You are standing inside the hemicycle. 332 real seats, real party colors,
    a camera that flies in on load and that you can look around by dragging. */
 
@@ -302,13 +302,13 @@ function animate() {
     // scroll dolly: pull back along the current view direction as the page scrolls,
     // so it reads as walking backward out of the chamber rather than a camera cut.
     // baseRadius is captured once, right when the intro finishes and controls take over,
-    // so it reflects the resting shot — not the intro's starting distance.
+    // so it reflects the resting shot, not the intro's starting distance.
     if (baseRadius === null) baseRadius = camera.position.distanceTo(controls.target);
     const dir = new THREE.Vector3().subVectors(camera.position, controls.target).normalize();
     const radius = baseRadius + scrollProgress * 22;
     camera.position.copy(controls.target).addScaledVector(dir, radius);
   }
-  // during the intro, flyIn() owns camera.position entirely — animate() just renders
+  // during the intro, flyIn() owns camera.position entirely, animate() just renders
 
   updateHover();
   composer.render(dt);
@@ -352,7 +352,7 @@ function renderLeadership() {
       <div class="role">${l.role_ne}</div>
       <div class="name-ne">${l.name_ne}</div>
       <div class="name-en">${l.name_en}</div>
-      <div class="phone">${l.office_phone || '—'}</div>
+      <div class="phone">${l.office_phone || 'N/A'}</div>
     </div>
   `).join('');
 }

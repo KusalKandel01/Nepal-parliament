@@ -1,8 +1,8 @@
 /* ============================================================
-   houses.js — powers the province seat-count map on houses.html.
+   houses.js, powers the province seat-count map on houses.html.
    Data comes from assets/data/province_seats.json, which is
    computed directly from members.json (see pipeline notes in
-   that file) — not hand-typed, so it stays accurate if the
+   that file), not hand-typed, so it stays accurate if the
    roster changes.
    ============================================================ */
 (function () {
@@ -43,7 +43,7 @@
       const nameSecond = lang === "en" ? p.name_ne : p.name_en;
       const capital = lang === "en" ? p.capital_en : p.capital_ne;
       return `
-        <div class="map-tile" data-row="${ROW[p.id]}" style="background:${bg}" title="${nameFirst} — ${seats}">
+        <div class="map-tile" data-row="${ROW[p.id]}" style="background:${bg}" title="${nameFirst}: ${seats}">
           <div class="p-name-ne">${nameFirst}</div>
           <div class="p-name-en">${nameSecond}</div>
           <div class="p-seats">${seats}</div>

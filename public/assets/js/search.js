@@ -1,5 +1,5 @@
 /* ============================================================
-   search.js — homepage hero search box: live suggestions that
+   search.js, homepage hero search box: live suggestions that
    link into directory.html with the query pre-filled.
    ============================================================ */
 

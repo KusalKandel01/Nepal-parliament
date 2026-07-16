@@ -1,5 +1,5 @@
 /* ============================================================
-   filters.js — powers directory.html: search, filters, sort,
+   filters.js, powers directory.html: search, filters, sort,
    pagination, URL state, card rendering, quick actions.
    Fully bilingual: all UI chrome goes through APP.t(); member
    data (names/district/party) is real content, not UI chrome,
@@ -76,7 +76,7 @@
   buildPartyOptions();
   if (partySelect) partySelect.value = state.party;
 
-  // ---- alphabet row (Devanagari — always shown regardless of UI language,
+  // ---- alphabet row (Devanagari, always shown regardless of UI language,
   // since it filters the Nepali name_ne field which is always present) ----
   const DEV_ALPHA = ["अ","आ","इ","ई","उ","ऊ","ए","ऐ","ओ","औ","क","ख","ग","घ","च","छ","ज","झ","ट","ठ","ड","ढ","त","थ","द","ध","न","प","फ","ब","भ","म","य","र","ल","व","श","ष","स","ह"];
   function buildAlphaRow() {
@@ -193,7 +193,7 @@
 
     // In English mode, lead with the English name and show Nepali as the
     // secondary line; in Nepali mode (default), the reverse. Both scripts
-    // are always present — this is real bilingual content, not translation.
+    // are always present, this is real bilingual content, not translation.
     const primaryName = lang === "en" ? (m.name_en || m.name_ne) : m.name_ne;
     const secondaryName = lang === "en" ? m.name_ne : (m.name_en || "");
     const secondaryLangAttr = lang === "en" ? 'lang="ne" translate="no"' : 'lang="en"';
@@ -206,7 +206,7 @@
           <div class="card-body">
             ${m.role ? `<span class="role-pill">${APP.escapeHtml(m.role)}</span>` : ""}
             <h3 class="card-name">${APP.highlight(primaryName, state.q)}<span class="name-en" ${secondaryLangAttr}>${APP.highlight(secondaryName, state.q)}</span></h3>
-            <span class="card-party">${APP.escapeHtml(APP.partyLabelFor(m.party_code, m.party_ne) || "—")}</span>
+            <span class="card-party">${APP.escapeHtml(APP.partyLabelFor(m.party_code, m.party_ne) || "N/A")}</span>
           </div>
         </div>
         <div class="card-meta">

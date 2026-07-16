@@ -1,5 +1,5 @@
 /* ============================================================
-   leadership.js — powers leadership.html: renders Speaker,
+   leadership.js, powers leadership.html: renders Speaker,
    Deputy Speaker, Chairperson, Vice Chairperson, PM cards and
    the political party parliamentary-office contact table.
    ============================================================ */
@@ -59,9 +59,9 @@
 
   tbody.innerHTML = data.party_offices.map(p => `
     <tr>
-      <td><strong translate="no">${p.party_code}</strong> — ${APP.escapeHtml(APP.partyLabelFor(p.party_code, p.party_ne))}</td>
-      <td>${p.parliamentary_office ? `<a href="tel:${p.parliamentary_office.replace(/\D/g,'')}" translate="no">${p.parliamentary_office}</a>` : "—"}</td>
-      <td translate="no">${p.staff_office || "—"}</td>
+      <td><strong translate="no">${p.party_code}</strong> · ${APP.escapeHtml(APP.partyLabelFor(p.party_code, p.party_ne))}</td>
+      <td>${p.parliamentary_office ? `<a href="tel:${p.parliamentary_office.replace(/\D/g,'')}" translate="no">${p.parliamentary_office}</a>` : "N/A"}</td>
+      <td translate="no">${p.staff_office || "N/A"}</td>
     </tr>
   `).join("");
 

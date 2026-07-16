@@ -1,5 +1,5 @@
 /* =========================================================
-   Nepal Federal Parliament Contact Directory — Design System
+   Nepal Federal Parliament Contact Directory, Design System
    Theme: Government authority + modern civic-tech
    ========================================================= */
 
@@ -20,7 +20,7 @@
   --ink-muted: #5B5847;
   --ink-faint: #8A8570;
 
-  /* Brand — the same registry drawn from the chamber on the homepage */
+  /* Brand, the same registry drawn from the chamber on the homepage */
   --navy: #0D1117;       /* "navy" var name kept for compat; now the institutional ink */
   --navy-soft: #232B3A;
   --gold: #8F7420;        /* brass, darkened for AA contrast on parchment */
@@ -46,7 +46,7 @@
   --party-nom: #9B7EDE;
   --party-oth: #78716C;
 
-  /* Elevation — hairline first, shadow only as a whisper (documents, not cards) */
+  /* Elevation, hairline first, shadow only as a whisper (documents, not cards) */
   --shadow-sm: 0 1px 2px rgba(13, 17, 23, 0.05);
   --shadow-md: 0 3px 8px -2px rgba(13, 17, 23, 0.10), 0 1px 3px rgba(13, 17, 23, 0.06);
   --shadow-lg: 0 10px 24px -8px rgba(13, 17, 23, 0.18), 0 2px 6px -2px rgba(13, 17, 23, 0.08);

@@ -1,5 +1,5 @@
 /* ============================================================
-   charts.js — pure SVG chart rendering, zero dependencies.
+   charts.js, pure SVG chart rendering, zero dependencies.
    Powers statistics.html: party donut, house split, district bars.
    ============================================================ */
 

@@ -1,9 +1,9 @@
 /* ============================================================
-   page-boot.js — shared header/subnav/footer bootstrap for pages
+   page-boot.js, shared header/subnav/footer bootstrap for pages
    that have no dedicated page-specific JS file (about, 404, offline).
    Reads config from data-* attributes on <body> instead of an inline
    <script>, since the site's CSP is script-src 'self' with no
-   'unsafe-inline' — inline <script> blocks are silently dropped by
+   'unsafe-inline', inline <script> blocks are silently dropped by
    the browser.
    ============================================================ */
 

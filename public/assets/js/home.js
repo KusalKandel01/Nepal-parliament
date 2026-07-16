@@ -1,5 +1,5 @@
 /* ============================================================
-   home.js — homepage-only glue. app.js (loaded just before this)
+   home.js, homepage-only glue. app.js (loaded just before this)
    already applies data-i18n text and sets <html lang> automatically
    on DOMContentLoaded. This file only wires the compact ने/EN
    toggle in the chamber header, since the homepage uses its own

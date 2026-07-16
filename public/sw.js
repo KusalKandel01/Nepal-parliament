@@ -1,5 +1,5 @@
 /* ============================================================
-   sw.js — minimal offline-first service worker.
+   sw.js, minimal offline-first service worker.
    Caches the app shell + data on install, serves cache-first for
    static assets and network-first (with cache fallback) for data
    JSON so visitors get last-known-good data when offline.
@@ -17,7 +17,7 @@
    a CDN, a Vercel rewrite, etc.) is introduced upstream.
    ============================================================ */
 
-const CACHE_VERSION = "npd-cache-v7";
+const CACHE_VERSION = "npd-cache-v8";
 const APP_SHELL = [
   "/",
   "/index.html",
@@ -30,21 +30,21 @@ const APP_SHELL = [
   "/downloads.html",
   "/about.html",
   "/offline.html",
-  "/assets/css/style.css?v=20260716a",
-  "/assets/css/immersive.css?v=20260716a",
-  "/assets/js/app.js?v=20260716a",
-  "/assets/js/i18n.js?v=20260716a",
-  "/assets/js/page-boot.js?v=20260716a",
-  "/assets/js/home.js?v=20260716a",
-  "/assets/js/houses.js?v=20260716a",
-  "/assets/js/filters.js?v=20260716a",
-  "/assets/js/member.js?v=20260716a",
-  "/assets/js/leadership.js?v=20260716a",
-  "/assets/js/committees.js?v=20260716a",
-  "/assets/js/statistics.js?v=20260716a",
-  "/assets/js/downloads.js?v=20260716a",
-  "/assets/js/search.js?v=20260716a",
-  "/assets/js/charts.js?v=20260716a",
+  "/assets/css/style.css?v=20260716b",
+  "/assets/css/immersive.css?v=20260716b",
+  "/assets/js/app.js?v=20260716b",
+  "/assets/js/i18n.js?v=20260716b",
+  "/assets/js/page-boot.js?v=20260716b",
+  "/assets/js/home.js?v=20260716b",
+  "/assets/js/houses.js?v=20260716b",
+  "/assets/js/filters.js?v=20260716b",
+  "/assets/js/member.js?v=20260716b",
+  "/assets/js/leadership.js?v=20260716b",
+  "/assets/js/committees.js?v=20260716b",
+  "/assets/js/statistics.js?v=20260716b",
+  "/assets/js/downloads.js?v=20260716b",
+  "/assets/js/search.js?v=20260716b",
+  "/assets/js/charts.js?v=20260716b",
   "/assets/images/emblem.svg",
 ];
 

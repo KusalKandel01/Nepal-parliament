@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Nepal Federal Parliament Directory — Immersive Design System
+   Nepal Federal Parliament Directory, Immersive Design System
    Signature: the hemicycle. Everything else stays quiet around it.
    ========================================================================== */
 
@@ -77,7 +77,7 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 600; margin: 0; lett
 /* -- Layout shell -- */
 .stage { position: relative; width: 100%; }
 .wrap { max-width: 1180px; margin: 0 auto; padding: 0 var(--space-3); pointer-events: none; }
-/* only real controls capture the pointer — everywhere else, drags reach the chamber below */
+/* only real controls capture the pointer, everywhere else, drags reach the chamber below */
 .wrap a, .wrap button, .wrap input, .wrap .results, .wrap .lead-card, .wrap .party-bar-row {
   pointer-events: auto;
 }
@@ -169,7 +169,7 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 600; margin: 0; lett
 }
 
 /* ==========================================================================
-   HERO — roll call
+   HERO, roll call
    ========================================================================== */
 .hero {
   position: relative;
@@ -275,7 +275,7 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 600; margin: 0; lett
 .hero-search .result-row .r-en { color: var(--parchment-dim); font-size: 0.8em; }
 
 /* ==========================================================================
-   HEMICYCLE — the signature element
+   HEMICYCLE, the signature element
    ========================================================================== */
 .chamber { position: relative; }
 .chamber svg { width: 100%; height: auto; overflow: visible; }

@@ -1,5 +1,5 @@
 /* ============================================================
-   committees.js — powers committees.html: tabs by house, renders
+   committees.js, powers committees.html: tabs by house, renders
    committee cards with chair/secretary contact and cross-links
    to the chairperson's full member profile when identifiable.
    ============================================================ */
@@ -42,7 +42,7 @@
   });
 
   function personMarkup(nameNe) {
-    if (!nameNe) return "—";
+    if (!nameNe) return "N/A";
     const key = nameNe.replace(/^श्री\s*|^मा\.\s*|^डा\.\s*/, "").trim();
     const id = memberIndex[key];
     return id ? `<a href="member.html?id=${id}">${APP.escapeHtml(nameNe)}</a>` : APP.escapeHtml(nameNe);

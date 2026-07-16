@@ -1,5 +1,5 @@
 /* ============================================================
-   member.js — powers member.html: loads a single member by
+   member.js, powers member.html: loads a single member by
    ?id=, renders the profile card, wires up quick actions,
    and injects dynamic SEO metadata (title/description/canonical/
    Open Graph/Person schema) since this is a client-rendered page.
@@ -40,7 +40,7 @@
   document.title = `${m.name_ne} | संघीय संसद सम्पर्क निर्देशिका`;
   document.getElementById("pageTitle").textContent = document.title;
   APP.renderSubnav(lang === "en" ? (m.name_en || m.name_ne) : m.name_ne, "directory.html", "nav_directory");
-  const desc = `${m.name_en || m.name_ne} — ${m.party_ne || ""}, ${m.district || ""}. ${m.house === "HoR" ? "House of Representatives" : "National Assembly"} member contact: phone, email.`;
+  const desc = `${m.name_en || m.name_ne}, ${m.party_ne || ""}, ${m.district || ""}. ${m.house === "HoR" ? "House of Representatives" : "National Assembly"} member contact: phone, email.`;
   document.getElementById("pageDescription").setAttribute("content", desc);
   document.getElementById("ogTitle").setAttribute("content", document.title);
   document.getElementById("ogDescription").setAttribute("content", desc);
@@ -98,7 +98,7 @@
         <div>
           ${m.role ? `<span class="role-pill">${APP.escapeHtml(m.role)}</span>` : ""}
           <h1 class="profile-name">${APP.escapeHtml(primaryName)}<span class="en" ${secondaryLangAttr}>${APP.escapeHtml(secondaryName)}</span></h1>
-          <span class="profile-party">${APP.escapeHtml(APP.partyLabelFor(m.party_code, m.party_ne) || "—")}</span>
+          <span class="profile-party">${APP.escapeHtml(APP.partyLabelFor(m.party_code, m.party_ne) || "N/A")}</span>
         </div>
       </div>
 
