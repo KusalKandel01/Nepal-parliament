@@ -76,13 +76,21 @@
   buildPartyOptions();
   if (partySelect) partySelect.value = state.party;
 
-  // ---- alphabet row (Devanagari, always shown regardless of UI language,
-  // since it filters the Nepali name_ne field which is always present) ----
+  // ---- alphabet row: Devanagari अ-ह in Nepali mode, A-Z in English mode,
+  // since filtering by first letter should match whichever name script is
+  // actually shown as the primary name on the card ----
   const DEV_ALPHA = ["अ","आ","इ","ई","उ","ऊ","ए","ऐ","ओ","औ","क","ख","ग","घ","च","छ","ज","झ","ट","ठ","ड","ढ","त","थ","द","ध","न","प","फ","ब","भ","म","य","र","ल","व","श","ष","स","ह"];
+  const EN_ALPHA = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+  const ALPHA_SET = lang === "en" ? EN_ALPHA : DEV_ALPHA;
+
+  // discard a stale alpha value carried over from a URL/state that belongs
+  // to the other script (e.g. a Devanagari letter surviving a switch to EN)
+  if (state.alpha && !ALPHA_SET.includes(state.alpha)) state.alpha = "";
+
   function buildAlphaRow() {
     if (!alphaRow) return;
     let html = `<button class="alpha-btn${state.alpha === "" ? " active" : ""}" data-alpha="" title="${APP.t("all")}" aria-pressed="${state.alpha === ""}">${APP.t("all_short")}</button>`;
-    DEV_ALPHA.forEach(ch => {
+    ALPHA_SET.forEach(ch => {
       html += `<button class="alpha-btn${state.alpha === ch ? " active" : ""}" data-alpha="${ch}" aria-pressed="${state.alpha === ch}" translate="no">${ch}</button>`;
     });
     alphaRow.innerHTML = html;
@@ -149,7 +157,10 @@
     let list = members.filter(m => {
       if (state.party !== "all" && m.party_code !== state.party) return false;
       if (state.house !== "all" && m.house !== state.house) return false;
-      if (state.alpha && !(m.name_ne || "").startsWith(state.alpha)) return false;
+      if (state.alpha) {
+        const nameField = lang === "en" ? (m.name_en || "").toUpperCase() : (m.name_ne || "");
+        if (!nameField.startsWith(state.alpha)) return false;
+      }
       if (q) {
         const hay = [m.name_ne, m.name_en, m.district, m.party_ne, ...(m.phones||[]), ...(m.emails||[])]
           .filter(Boolean).join(" ").toLowerCase();
@@ -159,8 +170,16 @@
     });
 
     switch (state.sort) {
-      case "name-asc": list.sort((a, b) => (a.name_ne||"").localeCompare(b.name_ne||"", "ne")); break;
-      case "name-desc": list.sort((a, b) => (b.name_ne||"").localeCompare(a.name_ne||"", "ne")); break;
+      case "name-asc":
+        list.sort((a, b) => lang === "en"
+          ? (a.name_en||"").localeCompare(b.name_en||"", "en")
+          : (a.name_ne||"").localeCompare(b.name_ne||"", "ne"));
+        break;
+      case "name-desc":
+        list.sort((a, b) => lang === "en"
+          ? (b.name_en||"").localeCompare(a.name_en||"", "en")
+          : (b.name_ne||"").localeCompare(a.name_ne||"", "ne"));
+        break;
       case "district": list.sort((a, b) => (a.district||"").localeCompare(b.district||"", "ne")); break;
       case "party": list.sort((a, b) => (a.party_code||"").localeCompare(b.party_code||"")); break;
       case "house": list.sort((a, b) => a.house.localeCompare(b.house)); break;
