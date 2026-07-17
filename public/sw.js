@@ -17,12 +17,13 @@
    a CDN, a Vercel rewrite, etc.) is introduced upstream.
    ============================================================ */
 
-const CACHE_VERSION = "npd-cache-v10";
+const CACHE_VERSION = "npd-cache-v11";
 const APP_SHELL = [
   "/",
   "/index.html",
   "/directory.html",
   "/houses.html",
+  "/government.html",
   "/member.html",
   "/leadership.html",
   "/committees.html",
@@ -30,21 +31,22 @@ const APP_SHELL = [
   "/downloads.html",
   "/about.html",
   "/offline.html",
-  "/assets/css/style.css?v=20260716d",
-  "/assets/css/immersive.css?v=20260716d",
-  "/assets/js/app.js?v=20260716d",
-  "/assets/js/i18n.js?v=20260716d",
-  "/assets/js/page-boot.js?v=20260716d",
-  "/assets/js/home.js?v=20260716d",
-  "/assets/js/houses.js?v=20260716d",
-  "/assets/js/filters.js?v=20260716d",
-  "/assets/js/member.js?v=20260716d",
-  "/assets/js/leadership.js?v=20260716d",
-  "/assets/js/committees.js?v=20260716d",
-  "/assets/js/statistics.js?v=20260716d",
-  "/assets/js/downloads.js?v=20260716d",
-  "/assets/js/search.js?v=20260716d",
-  "/assets/js/charts.js?v=20260716d",
+  "/assets/css/style.css?v=20260716e",
+  "/assets/css/immersive.css?v=20260716e",
+  "/assets/js/app.js?v=20260716e",
+  "/assets/js/i18n.js?v=20260716e",
+  "/assets/js/page-boot.js?v=20260716e",
+  "/assets/js/home.js?v=20260716e",
+  "/assets/js/houses.js?v=20260716e",
+  "/assets/js/government.js?v=20260716e",
+  "/assets/js/filters.js?v=20260716e",
+  "/assets/js/member.js?v=20260716e",
+  "/assets/js/leadership.js?v=20260716e",
+  "/assets/js/committees.js?v=20260716e",
+  "/assets/js/statistics.js?v=20260716e",
+  "/assets/js/downloads.js?v=20260716e",
+  "/assets/js/search.js?v=20260716e",
+  "/assets/js/charts.js?v=20260716e",
   "/assets/images/emblem.svg",
 ];
 
@@ -54,6 +56,8 @@ const DATA_PATHS = [
   "/assets/data/committees.json",
   "/assets/data/statistics.json",
   "/assets/data/province_seats.json",
+  "/assets/data/nepal_districts.json",
+  "/assets/data/government_sites.json",
 ];
 
 function safeResponse(response) {

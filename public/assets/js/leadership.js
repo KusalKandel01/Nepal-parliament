@@ -32,6 +32,9 @@
 
   grid.innerHTML = data.leadership.map(l => {
     const initial = (l.name_ne || "?").replace(/^मा\.\s*/, "").replace(/^श्री\s*/, "").trim().charAt(0);
+    const avatarInner = l.photo
+      ? `<div class="avatar-lg has-photo"><img src="${l.photo}" alt="" width="72" height="72" data-fallback-initial="${APP.escapeHtml(initial)}"></div>`
+      : `<div class="avatar-lg" aria-hidden="true" translate="no">${initial}</div>`;
     const key = (l.name_ne || "").replace(/^मा\.\s*|^डा\.\s*/, "").trim();
     const memberId = memberIndex[key];
     const primaryName = lang === "en" ? (l.name_en || l.name_ne) : l.name_ne;
@@ -44,7 +47,7 @@
     const houseLabel = l.house === "HoR" ? APP.t("house_hor") : l.house === "NA" ? APP.t("house_na") : APP.t("government");
     return `
       <div class="leader-card">
-        <div class="avatar-lg" aria-hidden="true" translate="no">${initial}</div>
+        ${avatarInner}
         <div class="leader-role">${APP.escapeHtml(roleLabel)} · ${houseLabel}</div>
         <h3>${nameMarkup}</h3>
         <div class="en" ${secondaryAttr}>${APP.escapeHtml(secondaryName)}</div>

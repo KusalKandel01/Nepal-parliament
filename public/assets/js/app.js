@@ -161,6 +161,7 @@ const APP = (() => {
       ["houses.html", t("nav_houses")],
       ["leadership.html", t("nav_leadership")],
       ["committees.html", t("nav_committees")],
+      ["government.html", t("nav_government")],
       ["statistics.html", t("nav_statistics")],
       ["downloads.html", t("nav_downloads")],
       ["about.html", t("nav_about")],

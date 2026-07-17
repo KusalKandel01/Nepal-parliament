@@ -719,7 +719,79 @@ a { color: inherit; text-decoration: none; }
   margin: 0 0 8px;
 }
 [data-theme="dark"] .page-hero h1 { color: var(--ink); }
-.page-hero p { color: var(--ink-muted); max-width: 560px; margin: 0 auto; }
+.page-hero p { color: var(--ink-muted); max-width: min(700px, 92vw); margin: 0 auto; }
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  margin-bottom: 6px;
+}
+.eyebrow::before { content: ''; width: 1.4em; height: 1px; background: var(--gold); opacity: 0.5; display: inline-block; }
+.section-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: var(--navy);
+  text-align: center;
+  margin: 0 0 18px;
+}
+[data-theme="dark"] .section-title { color: var(--ink); }
+
+/* -- Government sites page -- */
+.gov-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 14px;
+  margin-bottom: 8px;
+}
+.gov-card {
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+  border-left: 3px solid var(--gold);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 16px 18px;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+.gov-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.gov-name {
+  font-family: var(--font-display);
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin: 0 0 8px;
+  line-height: 1.35;
+}
+[data-theme="dark"] .gov-name { color: var(--ink); }
+.gov-name-secondary {
+  display: block;
+  font-family: var(--font-ui);
+  font-weight: 400;
+  font-size: 0.76rem;
+  color: var(--ink-faint);
+  margin-top: 2px;
+}
+.gov-minister, .gov-function, .gov-extra {
+  font-size: 0.84rem;
+  color: var(--ink-muted);
+  line-height: 1.6;
+  margin: 0 0 8px;
+}
+.gov-minister strong, .gov-function strong, .gov-extra strong { color: var(--ink); font-weight: 600; }
+.gov-site-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 0.82rem; margin-top: 6px; word-break: break-all;
+}
+.gov-site-link svg { width: 15px; height: 15px; flex-shrink: 0; }
+.gov-site-unavailable {
+  font-size: 0.78rem; color: var(--ink-faint); font-style: italic; margin-top: 6px;
+}
+.gov-disclaimer { text-align: center; max-width: 700px; margin: 28px auto 0; }
 
 .section {
   max-width: var(--max-width);
@@ -1303,7 +1375,10 @@ button.profile-avatar.photo-clickable:focus-visible .photo-zoom-hint { opacity: 
   background: var(--navy); color: #fff; margin: 0 auto 14px;
   display: flex; align-items: center; justify-content: center;
   font-family: var(--font-display); font-size: 1.6rem; font-weight: 700;
+  overflow: hidden;
 }
+.leader-card .avatar-lg.has-photo { box-shadow: 0 0 0 2px var(--surface), 0 0 0 3px var(--gold); }
+.leader-card .avatar-lg img { width: 100%; height: 100%; object-fit: cover; filter: url(#sharpen-photo) contrast(1.06) saturate(1.04); }
 .leader-role { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gold); font-weight: 700; margin-bottom: 6px; }
 .leader-card h3 { margin: 0 0 4px; font-family: var(--font-display); font-size: 1.05rem; }
 .leader-card .en { color: var(--ink-muted); font-size: 0.8rem; margin-bottom: 12px; }
@@ -1433,38 +1508,38 @@ button.profile-avatar.photo-clickable:focus-visible .photo-zoom-hint { opacity: 
   font-size: 0.85rem; font-weight: 600; color: var(--ink-muted); cursor: pointer; transition: background 0.2s, color 0.2s;
 }
 .map-toggle button.active { background: var(--navy); color: #fff; }
-.province-map {
+.province-map-wrap { max-width: 640px; margin: 0 auto; }
+.province-map { line-height: 0; }
+.province-map svg { width: 100%; height: auto; display: block; }
+.district-shape { cursor: pointer; transition: opacity 0.2s ease; }
+.district-shape:hover { filter: brightness(1.12); }
+.map-caption {
+  text-align: center; min-height: 1.4em; margin: 10px 0 0;
+  font-family: var(--font-mono); font-size: 0.8rem; color: var(--ink-muted);
+}
+.map-legend {
   display: grid;
-  grid-template-columns: repeat(7, minmax(0, 1fr));
-  gap: 10px;
-  margin-bottom: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 6px;
+  max-width: 760px;
+  margin: 18px auto 0;
 }
-.map-tile {
-  grid-row: 1;
-  min-width: 0;
-  border-radius: var(--radius-md);
-  padding: 14px 10px;
-  text-align: center;
-  color: #fff;
-  min-height: 108px;
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
-  transition: transform 0.2s;
-  cursor: default;
-  overflow-wrap: break-word;
+.legend-row {
+  display: flex; align-items: center; gap: 8px;
+  background: transparent; border: 1px solid transparent; border-radius: var(--radius-sm);
+  padding: 6px 8px; cursor: pointer; text-align: left; width: 100%;
+  transition: border-color 0.15s, background 0.15s;
+  font-family: var(--font-ui);
 }
-.map-tile:hover { transform: translateY(-3px); }
-.map-tile .p-name-ne { font-family: var(--font-display); font-weight: 700; font-size: 0.82rem; line-height: 1.25; }
-.map-tile .p-name-en { font-size: 0.65rem; opacity: 0.85; margin-top: 1px; }
-.map-tile .p-seats { font-size: 1.5rem; font-weight: 800; margin-top: 6px; font-family: var(--font-ui); }
-.map-tile .p-capital { font-size: 0.62rem; opacity: 0.8; margin-top: 2px; }
+.legend-row:hover, .legend-row.active { border-color: var(--surface-border-strong); background: var(--bg); }
+.legend-swatch { width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0; }
+.legend-name { font-size: 0.82rem; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.legend-bar-track { flex: 1; height: 6px; background: var(--surface-border); border-radius: 3px; overflow: hidden; min-width: 30px; }
+.legend-bar-fill { display: block; height: 100%; border-radius: 3px; }
+.legend-seats { font-family: var(--font-mono); font-size: 0.78rem; font-weight: 600; color: var(--ink-muted); min-width: 22px; text-align: right; }
 .map-note { font-size: 0.78rem; color: var(--ink-faint); text-align: center; margin: 8px 0 0; }
 .map-nominated { text-align: center; font-size: 0.82rem; color: var(--ink-muted); margin-top: 14px; padding: 10px; background: var(--bg); border-radius: var(--radius-sm); }
-@media (max-width: 900px) {
-  .province-map { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-  .map-tile[data-row="2"] { grid-column: span 1; }
-}
 @media (max-width: 600px) {
-  .province-map { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .house-facts { grid-template-columns: 1fr; gap: 8px; }
 }
 .flex-1 { flex: 1; }
