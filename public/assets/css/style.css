@@ -1098,7 +1098,7 @@ table.contact-table a { color: var(--party-rsp); }
 /* ---------------------------------------------------------
    Responsive
    --------------------------------------------------------- */
-@media (max-width: 860px) {
+@media (max-width: 960px) {
   .header-nav { display: none; }
   .hamburger { display: flex; }
 }
@@ -1291,32 +1291,6 @@ mark {
   overflow: hidden; flex-shrink: 0; box-shadow: var(--shadow-md);
 }
 .profile-avatar img { width: 100%; height: 100%; object-fit: cover; filter: url(#sharpen-photo) contrast(1.06) saturate(1.04); }
-button.profile-avatar.photo-clickable {
-  position: relative;
-  padding: 0;
-  border: none;
-  cursor: pointer;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-}
-button.profile-avatar.photo-clickable:hover,
-button.profile-avatar.photo-clickable:focus-visible {
-  transform: scale(1.04);
-  box-shadow: var(--shadow-lg);
-}
-.photo-zoom-hint {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(13, 17, 23, 0.55);
-  color: #fff;
-  opacity: 0;
-  transition: opacity 0.15s ease;
-}
-.photo-zoom-hint svg { width: 22px; height: 22px; }
-button.profile-avatar.photo-clickable:hover .photo-zoom-hint,
-button.profile-avatar.photo-clickable:focus-visible .photo-zoom-hint { opacity: 1; }
 .profile-name { font-family: var(--font-display); font-size: 1.6rem; font-weight: 700; margin: 0 0 4px; }
 .profile-name .en { display: block; font-family: var(--font-ui); font-weight: 400; font-size: 0.95rem; color: var(--ink-muted); }
 .profile-party { font-size: 0.9rem; font-weight: 600; color: var(--party-color, var(--gold)); }

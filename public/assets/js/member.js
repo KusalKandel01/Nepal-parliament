@@ -86,9 +86,7 @@
   const avatarInner = m.photo
     ? `<img src="${m.photo}" alt="" width="96" height="96" data-fallback-initial="${APP.escapeHtml(initial)}">`
     : `<span translate="no">${initial}</span>`;
-  const avatarWrap = m.photo
-    ? `<button type="button" class="profile-avatar photo-clickable" id="avatarBtn" title="${APP.t("action_view_photo")}" aria-label="${APP.t("action_view_photo")}">${avatarInner}<span class="photo-zoom-hint">${APP.ICONS.download}</span></button>`
-    : `<div class="profile-avatar">${avatarInner}</div>`;
+  const avatarWrap = `<div class="profile-avatar">${avatarInner}</div>`;
 
   const primaryName = lang === "en" ? (m.name_en || m.name_ne) : m.name_ne;
   const secondaryName = lang === "en" ? m.name_ne : (m.name_en || "");
@@ -136,7 +134,6 @@
       <div class="profile-actions">
         ${phone ? `<a class="btn whatsapp-btn" id="waBtn" target="_blank" rel="noopener">${APP.ICONS.whatsapp}${APP.t("action_whatsapp")}</a>` : ""}
         <button class="btn primary" id="vcardBtn">${APP.ICONS.download}${APP.t("action_vcard")}</button>
-        ${m.photo ? `<button class="btn" id="photoBtn">${APP.ICONS.download}${APP.t("action_photo")}</button>` : ""}
         <button class="btn" id="copyBtn">${APP.ICONS.copy}${APP.t("action_copy")}</button>
         <button class="btn" id="shareBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>${APP.t("action_share")}</button>
         <button class="btn" id="printProfileBtn">${APP.ICONS.printer}${APP.t("action_print")}</button>
@@ -151,19 +148,6 @@
   document.getElementById("vcardBtn").addEventListener("click", () => {
     APP.downloadFile(`${(m.name_en || m.id).replace(/\s+/g, "_")}.vcf`, APP.vCard(m), "text/vcard");
   });
-  if (m.photo) {
-    const photoFilename = `${(m.name_en || m.id).replace(/\s+/g, "_")}_photo.jpg`;
-    const openOrDownloadPhoto = async (btn) => {
-      const original = btn.innerHTML;
-      btn.disabled = true;
-      const bestUrl = await APP.resolvePhotoUrl(m.photo);
-      await APP.downloadImage(bestUrl, photoFilename);
-      btn.disabled = false;
-      btn.innerHTML = original;
-    };
-    document.getElementById("avatarBtn")?.addEventListener("click", (e) => openOrDownloadPhoto(e.currentTarget));
-    document.getElementById("photoBtn")?.addEventListener("click", (e) => openOrDownloadPhoto(e.currentTarget));
-  }
   document.getElementById("copyBtn").addEventListener("click", () => {
     const parts = [m.name_en || m.name_ne, phone, email].filter(Boolean);
     APP.copyText(parts.join(" · "), APP.t("contact_details"));

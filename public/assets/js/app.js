@@ -394,50 +394,6 @@ const APP = (() => {
     setTimeout(() => URL.revokeObjectURL(url), 2000);
   }
 
-  /* ---------------- Full-resolution photo resolution ----------------
-     Source photos are served as "..._thumbnail.jpg". The parliament site's
-     CMS (like most) keeps the original, full-resolution upload alongside it
-     under the same filename minus the "_thumbnail" suffix. We can't verify
-     that file exists from here (this is a static site with no backend, and
-     the source domain isn't reachable from a build-time check), so we test
-     it client-side at click time with a real Image() load and fall back to
-     the known-good thumbnail if the guess 404s. This can only ever surface
-     whatever resolution the source actually has; it can't invent detail
-     that isn't there. */
-  function resolvePhotoUrl(thumbUrl) {
-    return new Promise((resolve) => {
-      if (!thumbUrl || !thumbUrl.includes("_thumbnail")) { resolve(thumbUrl); return; }
-      const fullUrl = thumbUrl.replace("_thumbnail", "");
-      const probe = new Image();
-      const timer = setTimeout(() => resolve(thumbUrl), 4000);
-      probe.onload = () => { clearTimeout(timer); resolve(fullUrl); };
-      probe.onerror = () => { clearTimeout(timer); resolve(thumbUrl); };
-      probe.src = fullUrl;
-    });
-  }
-
-  async function downloadImage(url, filename) {
-    try {
-      const res = await fetch(url, { mode: "cors" });
-      if (!res.ok) throw new Error("bad status");
-      const blob = await res.blob();
-      const objUrl = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = objUrl;
-      a.download = filename;
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      setTimeout(() => URL.revokeObjectURL(objUrl), 2000);
-    } catch (e) {
-      // Cross-origin server doesn't send CORS headers for a direct fetch,
-      // so a forced download isn't possible from a static site. Opening the
-      // full-size image in a new tab still gets the person the photo; they
-      // can save it from there.
-      window.open(url, "_blank", "noopener");
-    }
-  }
-
   function initReveal() {
     // no-op placeholder for future scroll-reveal; respects reduced motion by default via CSS
   }
@@ -514,7 +470,6 @@ const APP = (() => {
     loadJSON, debounce, escapeHtml, highlight, partyColorVar, resolvePartyColor, PARTY_LABEL_SHORT,
     initTheme, toggleTheme, renderHeader, renderSubnav, renderFooter, initScrollTop,
     initKeyboardShortcuts, toast, announce, enSpan, copyText, whatsappLink, vCard, downloadFile,
-    resolvePhotoUrl, downloadImage,
     initServiceWorker, initStickyFilterBar, initLangToggle, skeletonCards, ICONS, t, getLang,
     initPhotoFallback, partyLabelFor, PARTY_LABEL_EN, districtLabelFor
   };

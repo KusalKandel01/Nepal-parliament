@@ -38,6 +38,8 @@
     }
     document.getElementById("govMinistries").innerHTML = DATA.ministries.map(m => cardMarkup(m, true)).join("");
     document.getElementById("govOther").innerHTML = DATA.other_bodies.map(b => cardMarkup(b, false)).join("");
+    const citizenMount = document.getElementById("govCitizen");
+    if (citizenMount) citizenMount.innerHTML = (DATA.citizen_services || []).map(s => cardMarkup(s, false)).join("");
   }
 
   function initSearch() {
