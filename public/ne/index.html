@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+
+<html lang="ne" translate="no">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>संघीय संसद सम्पर्क निर्देशिका · Nepal</title>
+<meta content="नेपालको संघीय संसदका ३३२ सांसदहरूको आधिकारिक, अन्तरक्रियात्मक सम्पर्क निर्देशिका।" name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&amp;family=Noto+Serif+Devanagari:wght@500;700&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=Noto+Sans+Devanagari:wght@400;500&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="../assets/images/emblem.svg" rel="icon" type="image/svg+xml"/>
+<link href="../assets/css/immersive.css?v=20260717a" rel="stylesheet"/>
+<meta content="#0D1117" name="theme-color"/>
+</head>
+<body>
+<canvas id="ambient-canvas"></canvas>
+<header class="site-header">
+<div class="brand">संघीय संसद · <strong>सम्पर्क निर्देशिका</strong></div>
+<nav>
+<a data-i18n="nav_directory" href="directory.html">सदस्य निर्देशिका</a>
+<a data-i18n="nav_leadership" href="leadership.html">नेतृत्व</a>
+<a data-i18n="nav_committees" href="committees.html">समितिहरू</a>
+<a data-i18n="nav_government" href="government.html">सरकारी साइटहरू</a>
+<a data-i18n="nav_statistics" href="statistics.html">तथ्याङ्क</a>
+<div aria-label="भाषा बदल्नुहोस्" class="lang-toggle-mini" id="homeLangToggle" role="group">
+<a data-lang="ne" href="index.html">ने</a>
+<a data-lang="en" href="../en/index.html">EN</a>
+</div>
+</nav>
+</header>
+<main>
+<section class="hero stage">
+<div class="wrap hero-inner">
+<div class="hero-copy">
+<div class="eyebrow" data-i18n="hero_eyebrow">३३२ सिट · २ सदन · १ सभाहल</div>
+<h1>
+<span class="ne">प्रत्येक सिट, एक जनप्रतिनिधि</span>
+</h1>
+<p class="lede" data-i18n="hero_lede">नेपालको संघीय संसदको पूर्ण, क्रस-भेरिफाइड सम्पर्क निर्देशिका (प्रतिनिधि सभा र राष्ट्रिय सभा)। कुनै पनि सदस्य खोज्नुहोस्, तिनको कार्यालयमा फोन गर्नुहोस्, वा तल सभाहल ठ्याक्कै बसेको अवस्थामा नै अन्वेषण गर्नुहोस्।</p>
+<div class="hero-search">
+<input autocomplete="off" id="hero-search-input" placeholder="नाम वा जिल्ला खोज्नुहोस्…" type="text"/>
+<div class="results" id="hero-search-results"></div>
+</div>
+<div class="hero-cta">
+<a class="btn primary" data-i18n="hero_open_directory" href="directory.html">पूर्ण निर्देशिका खोल्नुहोस् →</a>
+<a class="btn" data-i18n="hero_download_csv_json" href="downloads.html">CSV / JSON डाउनलोड गर्नुहोस्</a>
+</div>
+</div>
+<div class="chamber-hint">
+<p class="chamber-caption" data-i18n="chamber_caption">तपाईं सभाहल भित्र उभिनुभएको छ। हेर्न तान्नुहोस् · कसले बसेको हेर्न कुनै सिटमा माउस लैजानुहोस् · प्रोफाइल खोल्न क्लिक गर्नुहोस्।</p>
+<div class="legend">
+<span class="item"><span class="swatch" style="background:#A6303F"></span>NC</span>
+<span class="item"><span class="swatch" style="background:#C9A227"></span>RSP</span>
+<span class="item"><span class="swatch" style="background:#3D5799"></span>UML</span>
+<span class="item"><span class="swatch" style="background:#B5493A"></span>MLM</span>
+<span class="item"><span class="swatch" style="background:#5B7A6E"></span>RPP</span>
+<span class="item"><span class="swatch" style="background:#8D8D8D"></span><span data-i18n="legend_other">अन्य</span></span>
+</div>
+</div>
+</div>
+</section>
+<section class="stage" data-reveal="">
+<div class="wrap">
+<div class="stat-grid">
+<div class="stat-cell"><div class="num" id="stat-total">N/A</div><div class="label" data-i18n="stat_total">कुल सदस्य</div></div>
+<div class="stat-cell"><div class="num" id="stat-hor">N/A</div><div class="label" data-i18n="stat_hor">प्रतिनिधि सभा</div></div>
+<div class="stat-cell"><div class="num" id="stat-na">N/A</div><div class="label" data-i18n="stat_na">राष्ट्रिय सभा</div></div>
+<div class="stat-cell"><div class="num" id="stat-committees">N/A</div><div class="label" data-i18n="stat_committees">संसदीय समितिहरू</div></div>
+</div>
+</div>
+</section>
+<section class="stage">
+<div class="wrap">
+<div class="section-head" data-reveal="">
+<div class="eyebrow" data-i18n="section_composition_eyebrow">संरचना</div>
+<h2 data-i18n="section_composition_title">सभाहलमा कसको बाहुल्य छ</h2>
+<p data-i18n="section_composition_lede">प्रतिनिधि सभा र राष्ट्रिय सभा मिलाई सबै ३३२ सिटमा हरेक दलको हिस्सा।</p>
+</div>
+<div class="party-bars" data-reveal="" id="party-bars"></div>
+</div>
+</section>
+<section class="stage">
+<div class="wrap">
+<div class="section-head" data-reveal="">
+<div class="eyebrow" data-i18n="nav_leadership">नेतृत्व</div>
+<h2 data-i18n="section_leadership_title">सभामुख, उपसभामुख र सभाहल अध्यक्षहरू</h2>
+<p data-i18n="section_leadership_lede">संघीय संसदका पाँच नेतृत्व सिटका प्रत्यक्ष कार्यालय फोन लाइनहरू।</p>
+</div>
+<div class="lead-grid" data-reveal="" id="lead-grid"></div>
+</div>
+</section>
+<section class="stage closing" data-reveal="">
+<div class="wrap">
+<div class="eyebrow" data-i18n="closing_eyebrow" style="justify-content:center">१६ समिति · १० दल कार्यालय</div>
+<h2 data-i18n="closing_title">पूरै संस्थासम्म पुग्नुहोस्, केवल सूचीमा मात्र होइन।</h2>
+<div class="hero-cta" style="justify-content:center">
+<a class="btn primary" data-i18n="closing_browse_committees" href="committees.html">समितिहरू हेर्नुहोस् →</a>
+<a class="btn" data-i18n="closing_how_verified" href="about.html">यो डाटा कसरी प्रमाणित गरियो</a>
+</div>
+</div>
+</section>
+</main>
+<footer class="site-footer" data-i18n="home_footer">संघीय संसद सचिवालय, सिंहदरबार, काठमाडौं · hr.parliament.gov.np र na.parliament.gov.np सँग क्रस-रेफरेन्स गरिएको डाटा · स्वतन्त्र नागरिक-प्रविधि परियोजना</footer>
+<script src="../assets/js/i18n.js?v=20260717a"></script>
+<script src="../assets/js/app.js?v=20260717a"></script>
+<script src="../assets/js/home.js?v=20260717a"></script>
+<script src="../assets/vendor/three.min.js"></script>
+<script src="../assets/vendor/three-addons.js"></script>
+<script src="../assets/vendor/gsap.min.js"></script>
+<script src="../assets/vendor/ScrollTrigger.min.js"></script>
+<script src="../assets/js/chamber3d.js?v=20260717a"></script>
+</body>
+</html>

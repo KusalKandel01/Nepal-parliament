@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<html lang="en" translate="no">
+<head>
+<meta charset="utf-8"/>
+<meta content="notranslate" name="google"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Member Directory · Federal Parliament Contact Directory</title>
+<meta content="नेपालको प्रतिनिधि सभा र राष्ट्रिय सभाका सबै ३३२ सदस्यहरू खोज्नुहोस्, नाम, जिल्ला, दल, फोन वा इमेलद्वारा फिल्टर गर्नुहोस्।" name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&amp;family=Noto+Serif+Devanagari:wght@500;700&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=Noto+Sans+Devanagari:wght@400;500;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="../assets/images/icon-180.png" rel="apple-touch-icon" sizes="180x180"/>
+<meta content="#F4F6F8" media="(prefers-color-scheme: light)" name="theme-color"/>
+<meta content="#0F172A" media="(prefers-color-scheme: dark)" name="theme-color"/>
+<meta content="website" property="og:type"/>
+<meta content="Federal Parliament Contact Directory" property="og:site_name"/>
+<meta content="Member Directory · Federal Parliament Contact Directory" property="og:title"/>
+<meta content="नेपालको प्रतिनिधि सभा र राष्ट्रिय सभाका सबै ३३२ सदस्यहरू खोज्नुहोस्।" property="og:description"/>
+<meta content="https://nepal-parliament-directory.vercel.app/assets/images/parliament.svg" property="og:image"/>
+<meta content="https://nepal-parliament-directory.vercel.app/en/directory.html" property="og:url"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="सदस्य निर्देशिका | Member Directory · संघीय संसद सम्पर्क निर्देशिका" name="twitter:title"/>
+<meta content="नेपालको प्रतिनिधि सभा र राष्ट्रिय सभाका सबै ३३२ सदस्यहरू खोज्नुहोस्।" name="twitter:description"/>
+<link href="https://nepal-parliament-directory.vercel.app/directory.html" hreflang="ne" rel="alternate"/>
+<link href="https://nepal-parliament-directory.vercel.app/directory.html" hreflang="x-default" rel="alternate"/>
+<link href="https://nepal-parliament-directory.vercel.app/en/directory.html" rel="canonical"/>
+<link href="../assets/images/emblem.svg" rel="icon" type="image/svg+xml"/>
+<link href="../assets/images/icon-32.png" rel="icon" sizes="32x32" type="image/png"/>
+<link href="../assets/images/icon-16.png" rel="icon" sizes="16x16" type="image/png"/>
+<link href="../manifest.json" rel="manifest"/>
+<link href="../assets/css/style.css?v=20260717a" rel="stylesheet"/>
+</head>
+<body class="notranslate">
+<svg aria-hidden="true" height="0" style="position:absolute" width="0"><filter color-interpolation-filters="sRGB" id="sharpen-photo"><feconvolvematrix kernelmatrix="0 -0.55 0  -0.55 3.2 -0.55  0 -0.55 0" order="3" preservealpha="true"></feconvolvematrix></filter></svg>
+<a class="skip-link" data-i18n="skip_to_main" href="#main">Skip to main content</a>
+<div aria-hidden="true" class="bg-atmosphere"></div>
+<div aria-hidden="true" class="bg-grain"></div>
+<header class="site-header" id="siteHeader"></header>
+<div class="subnav" id="subnav"></div>
+<main id="main">
+<div class="page-hero page-hero-flush">
+<h1 data-i18n="directory_title">Member Directory</h1>
+<p data-i18n="directory_lede">Search by name, district, political party, phone or email. Results are filtered automatically.</p>
+</div>
+<div class="stats-bar" id="statsBar"></div>
+<div class="search-wrap search-wrap-tight">
+<div class="search-box">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+<input aria-label="Search by name, district, party, phone or email…" autocomplete="off" data-i18n-aria-label="search_placeholder" data-i18n-placeholder="search_placeholder" id="searchInput" placeholder="Search by name, district, party, phone or email…" type="search"/>
+<span class="kbd-hint">Ctrl+K</span>
+</div>
+</div>
+<div class="filter-bar" id="filterBar">
+<div class="select-field">
+<label class="sr-only" data-i18n="filter_by_party_label" for="partyFilter">Filter by party</label>
+<select aria-label="दल अनुसार फिल्टर" id="partyFilter"></select>
+</div>
+<div aria-label="सदन अनुसार फिल्टर" class="house-toggle" id="houseToggle" role="group"></div>
+<div class="sort-field select-field">
+<label class="sr-only" data-i18n="sort_by_label" for="sortSelect">Sort by</label>
+<select aria-label="क्रमबद्ध गर्नुहोस्" id="sortSelect">
+<option value="name-asc">नाम (क-ज्ञ)</option>
+<option value="name-desc">नाम (ज्ञ-क)</option>
+<option value="district">जिल्ला अनुसार</option>
+<option value="party">दल अनुसार</option>
+<option value="house">सदन अनुसार</option>
+</select>
+</div>
+<div class="alpha-row" id="alphaRow"></div>
+</div>
+<div class="results-info" id="resultsInfo"></div>
+<div aria-live="polite" class="grid" id="memberGrid"></div>
+<nav aria-label="पृष्ठ नेभिगेसन" class="pagination" id="pagination"></nav>
+</main>
+<footer class="site-footer" id="siteFooter"></footer>
+<button aria-label="माथि जानुहोस्" class="scroll-top" id="scrollTopBtn"></button>
+<script src="../assets/js/i18n.js?v=20260717a"></script>
+<script src="../assets/js/app.js?v=20260717a"></script>
+<script src="../assets/js/filters.js?v=20260717a"></script>
+</body>
+</html>

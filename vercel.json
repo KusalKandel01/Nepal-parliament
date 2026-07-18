@@ -6,56 +6,157 @@
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "X-Frame-Options", "value": "DENY" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=()"
+        },
         {
           "key": "Content-Security-Policy",
           "value": "default-src 'self'; img-src 'self' https: data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests"
         },
-        { "key": "X-DNS-Prefetch-Control", "value": "on" }
+        {
+          "key": "X-DNS-Prefetch-Control",
+          "value": "on"
+        }
       ]
     },
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "Cross-Origin-Opener-Policy", "value": "same-origin" },
-        { "key": "Cross-Origin-Resource-Policy", "value": "same-site" }
+        {
+          "key": "Cross-Origin-Opener-Policy",
+          "value": "same-origin"
+        },
+        {
+          "key": "Cross-Origin-Resource-Policy",
+          "value": "same-site"
+        }
       ]
     },
     {
       "source": "/assets/data/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800"
+        }
       ]
     },
     {
       "source": "/assets/css/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=86400, s-maxage=604800, immutable" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400, s-maxage=604800, immutable"
+        }
       ]
     },
     {
       "source": "/assets/js/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=86400, s-maxage=604800, immutable" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400, s-maxage=604800, immutable"
+        }
       ]
     },
     {
       "source": "/assets/icons/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=604800, s-maxage=2592000, immutable" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=604800, s-maxage=2592000, immutable"
+        }
       ]
     },
     {
       "source": "/assets/images/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=604800, s-maxage=2592000, immutable" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=604800, s-maxage=2592000, immutable"
+        }
       ]
     }
   ],
   "rewrites": [
-    { "source": "/member/:id", "destination": "/member.html?id=:id" }
+    {
+      "source": "/member/:id",
+      "destination": "/ne/member.html?id=:id"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/404.html",
+      "destination": "/ne/404.html",
+      "permanent": false
+    },
+    {
+      "source": "/about.html",
+      "destination": "/ne/about.html",
+      "permanent": false
+    },
+    {
+      "source": "/committees.html",
+      "destination": "/ne/committees.html",
+      "permanent": false
+    },
+    {
+      "source": "/directory.html",
+      "destination": "/ne/directory.html",
+      "permanent": false
+    },
+    {
+      "source": "/downloads.html",
+      "destination": "/ne/downloads.html",
+      "permanent": false
+    },
+    {
+      "source": "/government.html",
+      "destination": "/ne/government.html",
+      "permanent": false
+    },
+    {
+      "source": "/houses.html",
+      "destination": "/ne/houses.html",
+      "permanent": false
+    },
+    {
+      "source": "/leadership.html",
+      "destination": "/ne/leadership.html",
+      "permanent": false
+    },
+    {
+      "source": "/member.html",
+      "destination": "/ne/member.html",
+      "permanent": false
+    },
+    {
+      "source": "/offline.html",
+      "destination": "/ne/offline.html",
+      "permanent": false
+    },
+    {
+      "source": "/statistics.html",
+      "destination": "/ne/statistics.html",
+      "permanent": false
+    },
+    {
+      "source": "/index.html",
+      "destination": "/ne/index.html",
+      "permanent": false
+    }
   ]
 }
