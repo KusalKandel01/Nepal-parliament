@@ -134,6 +134,26 @@
       "permanent": false
     },
     {
+      "source": "/tools.html",
+      "destination": "/ne/tools.html",
+      "permanent": false
+    },
+    {
+      "source": "/find-representative.html",
+      "destination": "/ne/find-representative.html",
+      "permanent": false
+    },
+    {
+      "source": "/compare.html",
+      "destination": "/ne/compare.html",
+      "permanent": false
+    },
+    {
+      "source": "/legislative-process.html",
+      "destination": "/ne/legislative-process.html",
+      "permanent": false
+    },
+    {
       "source": "/leadership.html",
       "destination": "/ne/leadership.html",
       "permanent": false

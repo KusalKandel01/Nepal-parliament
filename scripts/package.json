@@ -1,0 +1,14 @@
+{
+  "name": "npd-qa-scripts",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "qa:console": "node scripts/qa/console-csp-sweep.mjs",
+    "qa:i18n": "node scripts/qa/i18n-purity-sweep.mjs",
+    "qa:layout": "node scripts/qa/layout-overflow-sweep.mjs",
+    "qa:all": "npm run qa:console && npm run qa:i18n && npm run qa:layout"
+  },
+  "devDependencies": {
+    "playwright": "^1.56.0"
+  }
+}
