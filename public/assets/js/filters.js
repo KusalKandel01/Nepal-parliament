@@ -240,7 +240,7 @@
         <div class="card-actions">
           ${phone ? `<button class="action-btn whatsapp" data-action="whatsapp" data-phone="${phone}">${APP.ICONS.whatsapp}<span class="tooltip">${APP.t("tooltip_whatsapp")}</span></button>` : ""}
           <button class="action-btn copy" data-action="copy" data-phone="${phone||""}" data-email="${email||""}">${APP.ICONS.copy}<span class="tooltip">${APP.t("tooltip_copy")}</span></button>
-          <button class="action-btn" data-action="vcard">${APP.ICONS.download}<span class="tooltip">${APP.t("tooltip_vcard")}</span></button>
+          <button class="action-btn" data-action="saveimage">${APP.ICONS.download}<span class="tooltip">${APP.t("tooltip_save_image")}</span></button>
           <button class="action-btn save${isSaved ? " saved" : ""}" data-action="save"><svg viewBox="0 0 24 24" fill="${isSaved ? "currentColor" : "none"}" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><span class="tooltip">${isSaved ? APP.t("tooltip_saved") : APP.t("tooltip_save")}</span></button>
           <a class="action-btn" href="member.html?id=${m.id}">${APP.ICONS.info}<span class="tooltip">${APP.t("tooltip_profile")}</span></a>
         </div>
@@ -263,8 +263,13 @@
             APP.copyText(text, text === btn.dataset.phone ? "Phone" : "Email");
             btn.classList.add("copied");
             setTimeout(() => btn.classList.remove("copied"), 1200);
-          } else if (action === "vcard") {
-            APP.downloadFile(`${(member.name_en||member.id).replace(/\s+/g,"_")}.vcf`, APP.vCard(member), "text/vcard");
+          } else if (action === "saveimage") {
+            const icon = btn.innerHTML;
+            btn.disabled = true;
+            APP.buildProfileCardImage(member, "png").catch(() => APP.toast(APP.t("action_save_image_failed"))).finally(() => {
+              btn.disabled = false;
+              btn.innerHTML = icon;
+            });
           } else if (action === "save") {
             const nowSaved = toggleSaved(id);
             btn.classList.toggle("saved", nowSaved);

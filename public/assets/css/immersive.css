@@ -17,6 +17,15 @@
   --brass:           #C9A227;   /* seal / accent / CTA */
   --brass-dim:       #8F7420;
 
+  /* -- Party colors: same values as the dark theme elsewhere on the site,
+     duplicated here (not imported) since this file is an intentionally
+     separate visual theme for the chamber page. The 3D scene reads these
+     via getComputedStyle instead of keeping its own hardcoded hex palette. -- */
+  --party-rsp: #3BA3D9; --party-nc: #2E9E77; --party-uml: #E5605C;
+  --party-mlm: #D25D68; --party-rpp: #5590C4; --party-sp: #B36FCB;
+  --party-jsp: #E0A63E; --party-lsp: #3FB6C4; --party-ind: #94A0B4;
+  --party-nom: #B79CE8; --party-oth: #A79E97;
+
   /* -- Type -- */
   --font-display: 'Fraunces', 'Noto Serif Devanagari', serif;
   --font-body:    'IBM Plex Sans', 'Noto Sans Devanagari', sans-serif;
@@ -92,6 +101,23 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 600; margin: 0; lett
   cursor: grab;
 }
 #ambient-canvas:active { cursor: grabbing; }
+
+/* -- Graceful fallback when WebGL is unavailable or the scene fails to
+   initialize: the canvas never renders, so replace it with a static
+   gradient in the same palette rather than leaving a blank black page.
+   The rest of the homepage (stats, leadership, search) still works
+   normally; only the 3D-specific chrome is hidden. -- */
+body.no-webgl #ambient-canvas { display: none; }
+body.no-webgl::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse at 50% 75%, rgba(201,162,39,0.14), transparent 60%),
+    linear-gradient(180deg, #0d1117 0%, #131924 55%, #0d1117 100%);
+}
+body.no-webgl [data-webgl-only] { display: none; }
 
 .chamber-hint {
   margin-top: var(--space-4);
@@ -274,7 +300,7 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 600; margin: 0; lett
 .hero-search .result-row:last-child { border-bottom: none; }
 .hero-search .result-row:hover { background: rgba(201,162,39,0.08); }
 .hero-search .result-row .party-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-.hero-search .result-row .r-en { color: var(--parchment-dim); font-size: 0.8em; }
+.hero-search .result-row .r-meta { color: var(--parchment-dim); font-size: 0.8em; }
 
 /* ==========================================================================
    HEMICYCLE, the signature element
@@ -317,8 +343,7 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 600; margin: 0; lett
   box-shadow: 0 12px 30px rgba(0,0,0,0.5);
 }
 .seat-tooltip.show { opacity: 1; }
-.seat-tooltip .t-name-ne { font-family: var(--font-display); font-size: 1rem; display: block; }
-.seat-tooltip .t-name-en { color: var(--parchment-dim); font-size: 0.78rem; }
+.seat-tooltip .t-name { font-family: var(--font-display); font-size: 1rem; display: block; }
 .seat-tooltip .t-meta { margin-top: 0.35em; font-family: var(--font-mono); font-size: 0.72rem; color: var(--brass); }
 
 /* legend */
@@ -366,8 +391,7 @@ section:not(.hero) .wrap > #lead-grid { padding: var(--space-3); }
 .lead-card { background: var(--ink-raised); border: 1px solid var(--ink-line); border-radius: var(--radius); padding: var(--space-3); transition: border-color 0.3s, transform 0.3s var(--ease-roll); }
 .lead-card:hover { border-color: var(--brass-dim); transform: translateY(-4px); }
 .lead-card .role { font-family: var(--font-mono); font-size: 0.7rem; color: var(--brass); letter-spacing: 0.08em; text-transform: uppercase; }
-.lead-card .name-ne { font-family: var(--font-display); font-size: 1.3rem; margin-top: 0.4em; }
-.lead-card .name-en { color: var(--parchment-dim); font-size: 0.85rem; }
+.lead-card .name { font-family: var(--font-display); font-size: 1.3rem; margin-top: 0.4em; }
 .lead-card .phone { margin-top: var(--space-2); font-family: var(--font-mono); font-size: 0.78rem; color: var(--parchment-dim); }
 
 /* -- Party bars -- */

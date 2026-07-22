@@ -17,33 +17,36 @@
    a CDN, a Vercel rewrite, etc.) is introduced upstream.
    ============================================================ */
 
-const CACHE_VERSION = "npd-cache-v15";
+const CACHE_VERSION = "npd-cache-v20";
 const PAGES = [
   "index.html", "directory.html", "houses.html", "government.html",
   "member.html", "leadership.html", "committees.html", "statistics.html",
   "downloads.html", "about.html", "offline.html", "404.html",
+  "tools.html", "find-representative.html", "compare.html", "legislative-process.html",
 ];
 const APP_SHELL = [
   "/",
   "/index.html",
   ...PAGES.map((p) => `/ne/${p}`),
   ...PAGES.map((p) => `/en/${p}`),
-  "/assets/css/style.css?v=20260717a",
-  "/assets/css/immersive.css?v=20260717a",
-  "/assets/js/app.js?v=20260717a",
-  "/assets/js/i18n.js?v=20260717a",
-  "/assets/js/page-boot.js?v=20260717a",
-  "/assets/js/home.js?v=20260717a",
-  "/assets/js/houses.js?v=20260717a",
-  "/assets/js/government.js?v=20260717a",
-  "/assets/js/filters.js?v=20260717a",
-  "/assets/js/member.js?v=20260717a",
-  "/assets/js/leadership.js?v=20260717a",
-  "/assets/js/committees.js?v=20260717a",
-  "/assets/js/statistics.js?v=20260717a",
-  "/assets/js/downloads.js?v=20260717a",
-  "/assets/js/search.js?v=20260717a",
-  "/assets/js/charts.js?v=20260717a",
+  "/assets/css/style.css?v=20260722a",
+  "/assets/css/immersive.css?v=20260722a",
+  "/assets/js/app.js?v=20260722a",
+  "/assets/js/i18n.js?v=20260722a",
+  "/assets/js/page-boot.js?v=20260722a",
+  "/assets/js/home.js?v=20260722a",
+  "/assets/js/houses.js?v=20260722a",
+  "/assets/js/government.js?v=20260722a",
+  "/assets/js/filters.js?v=20260722a",
+  "/assets/js/member.js?v=20260722a",
+  "/assets/js/leadership.js?v=20260722a",
+  "/assets/js/committees.js?v=20260722a",
+  "/assets/js/statistics.js?v=20260722a",
+  "/assets/js/downloads.js?v=20260722a",
+  "/assets/js/search.js?v=20260722a",
+  "/assets/js/charts.js?v=20260722a",
+  "/assets/js/findrep.js?v=20260722a",
+  "/assets/js/compare.js?v=20260722a",
   "/assets/images/emblem.svg",
 ];
 

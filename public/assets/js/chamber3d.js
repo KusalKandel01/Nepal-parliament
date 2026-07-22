@@ -1,14 +1,28 @@
 /* Nepal Federal Parliament, 3D Chamber
    You are standing inside the hemicycle. 332 real seats, real party colors,
-   a camera that flies in on load and that you can look around by dragging. */
+   a camera that flies in on load and that you can look around by dragging.
 
-const PARTY_COLOR = {
-  RSP: 0xC9A227, NC: 0xA6303F, UML: 0x3D5799, MLM: 0xB5493A,
-  RPP: 0x5B7A6E, SP: 0x8A6FB0, JSP: 0x4C9A8C, LSP: 0xC77C3C,
-  IND: 0x8D8D8D, NOM: 0x6F7B93, OTH: 0x5A5A5A
-};
+   Party colors are read from the shared --party-* CSS custom properties
+   (defined in immersive.css) rather than kept as a second, hand-maintained
+   hex palette here, so this file can't silently drift out of sync with the
+   colors used everywhere else on the site. */
 
-let DATA = { members: [], statistics: null, leadership: null };
+let PARTY_COLOR = {};
+function readPartyColors() {
+  const styles = getComputedStyle(document.documentElement);
+  const codes = ['RSP', 'NC', 'UML', 'MLM', 'RPP', 'SP', 'JSP', 'LSP', 'IND', 'NOM', 'OTH'];
+  const map = {};
+  codes.forEach(code => {
+    const raw = styles.getPropertyValue(`--party-${code.toLowerCase()}`).trim();
+    map[code] = raw ? parseInt(raw.replace('#', ''), 16) : 0x888888;
+  });
+  return map;
+}
+function cssHex(numericColor) {
+  return '#' + (numericColor >>> 0).toString(16).padStart(6, '0');
+}
+
+let DATA = { members: [], statistics: null, leadership: null, committeeCount: null };
 let scene, camera, renderer, composer, controls, raycaster, mouse;
 let seatMeshes = [];
 let hoveredSeat = null;
@@ -16,16 +30,37 @@ let tooltip;
 const clock = new THREE.Clock();
 let scrollProgress = 0;
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const lang = (window.I18N_ENGINE && window.I18N_ENGINE.getLang) ? window.I18N_ENGINE.getLang() : "ne";
+
+function districtLabel(district) {
+  return (typeof APP !== 'undefined' && APP.districtLabelFor) ? (APP.districtLabelFor(district) || district) : district;
+}
 
 async function loadData() {
-  const [membersRes, statsRes, leadRes] = await Promise.all([
+  const [membersRes, statsRes, leadRes, committeesRes] = await Promise.all([
     fetch('/assets/data/members.json').then(r => r.json()),
     fetch('/assets/data/statistics.json').then(r => r.json()),
     fetch('/assets/data/leadership.json').then(r => r.json()),
+    fetch('/assets/data/committees.json').then(r => r.json()).catch(() => null),
   ]);
   DATA.members = membersRes.members;
   DATA.statistics = statsRes;
   DATA.leadership = leadRes.leadership;
+  DATA.committeeCount = committeesRes ? committeesRes.committees.length : null;
+}
+
+/* ---------- WebGL availability check ---------- */
+function isWebGLAvailable() {
+  try {
+    const canvas = document.createElement('canvas');
+    return !!(window.WebGLRenderingContext &&
+      (canvas.getContext('webgl') || canvas.getContext('experimental-webgl')));
+  } catch (e) {
+    return false;
+  }
+}
+function applyNoWebglFallback() {
+  document.body.classList.add('no-webgl');
 }
 
 /* ---------- Scene setup ---------- */
@@ -183,7 +218,7 @@ function buildSeats() {
         const seat = new THREE.Mesh(seatGeo, matFor(m.party_code));
         seat.position.set(x, y, z);
         seat.rotation.y = angle;
-        seat.userData = { id: m.id, name_ne: m.name_ne, name_en: m.name_en, district: m.district, party_code: m.party_code, house: m.house, role: m.role, baseY: y, baseScale: 1 };
+        seat.userData = { id: m.id, name_ne: m.name_ne, name_en: m.name_en, district: m.district, party_code: m.party_code, party_ne: m.party_ne, house: m.house, role: m.role, baseY: y, baseScale: 1 };
         scene.add(seat);
         seatMeshes.push(seat);
       }
@@ -239,10 +274,16 @@ function updateHover() {
       seat.material.emissiveIntensity = 1.1;
     }
     const m = seat.userData;
+    // Single-language tooltip: this used to show name_ne and name_en
+    // together regardless of page language, which leaked the other
+    // language's text onto the page. Pick one, based on the page's
+    // actual language, same as every other render path on the site.
+    const displayName = lang === "en" ? (m.name_en || m.name_ne) : m.name_ne;
+    const displayDistrict = districtLabel(m.district) || "";
+    const metaParts = [displayDistrict, m.party_code, m.house, m.role].filter(Boolean);
     tooltip.innerHTML = `
-      <span class="t-name-ne">${m.name_ne}</span>
-      <span class="t-name-en">${m.name_en} · ${m.district}</span>
-      <span class="t-meta">${m.party_code} · ${m.house}${m.role ? ' · ' + m.role : ''}</span>
+      <span class="t-name">${displayName}</span>
+      <span class="t-meta">${metaParts.join(' \u00b7 ')}</span>
     `;
     tooltip.style.left = Math.min(lastPointer.x + 16, window.innerWidth - 240) + 'px';
     tooltip.style.top = Math.max(lastPointer.y - 10, 10) + 'px';
@@ -299,16 +340,11 @@ function animate() {
     controls.target.y = 5 + scrollProgress * 4;
     controls.update();
 
-    // scroll dolly: pull back along the current view direction as the page scrolls,
-    // so it reads as walking backward out of the chamber rather than a camera cut.
-    // baseRadius is captured once, right when the intro finishes and controls take over,
-    // so it reflects the resting shot, not the intro's starting distance.
     if (baseRadius === null) baseRadius = camera.position.distanceTo(controls.target);
     const dir = new THREE.Vector3().subVectors(camera.position, controls.target).normalize();
     const radius = baseRadius + scrollProgress * 22;
     camera.position.copy(controls.target).addScaledVector(dir, radius);
   }
-  // during the intro, flyIn() owns camera.position entirely, animate() just renders
 
   updateHover();
   composer.render(dt);
@@ -316,45 +352,61 @@ function animate() {
 
 (async function init() {
   await loadData();
-  initScene();
+  PARTY_COLOR = readPartyColors();
+
+  const webglOk = isWebGLAvailable();
+  if (webglOk) {
+    try {
+      initScene();
+      setupScrollDolly();
+      flyIn();
+      animate();
+    } catch (e) {
+      console.error('3D chamber failed to initialize; showing static fallback.', e);
+      applyNoWebglFallback();
+    }
+  } else {
+    applyNoWebglFallback();
+  }
+
   renderStats();
   renderLeadership();
   setupSearch();
-  setupScrollDolly();
-  flyIn();
-  animate();
   gsap.from('.hero .eyebrow, .hero h1, .hero p.lede, .hero-search, .hero-cta', {
     opacity: 0, y: 20, duration: 0.9, stagger: 0.09, ease: 'power3.out', delay: 0.6
   });
 })();
 
-/* ---------- Stats / leadership / search (unchanged data logic) ---------- */
+/* ---------- Stats / leadership / search ---------- */
 function renderStats() {
   const s = DATA.statistics;
   document.getElementById('stat-total').textContent = s.total_members;
   document.getElementById('stat-hor').textContent = s.by_house.HoR;
   document.getElementById('stat-na').textContent = s.by_house.NA;
-  document.getElementById('stat-committees').textContent = '16';
+  document.getElementById('stat-committees').textContent = DATA.committeeCount != null ? DATA.committeeCount : '16';
   const container = document.getElementById('party-bars');
   const entries = Object.entries(s.by_party).sort((a, b) => b[1] - a[1]);
   const max = entries[0][1];
   container.innerHTML = entries.map(([code, count]) => `
     <div class="party-bar-row">
-      <span style="color:#${PARTY_COLOR[code].toString(16).padStart(6,'0')}">${code}</span>
-      <span class="track"><span class="fill" data-w="${(count / max * 100).toFixed(1)}" style="background:#${PARTY_COLOR[code].toString(16).padStart(6,'0')}"></span></span>
+      <span style="color:${cssHex(PARTY_COLOR[code])}">${code}</span>
+      <span class="track"><span class="fill" data-w="${(count / max * 100).toFixed(1)}" style="background:${cssHex(PARTY_COLOR[code])}"></span></span>
       <span class="count">${count}</span>
     </div>
   `).join('');
 }
 function renderLeadership() {
-  document.getElementById('lead-grid').innerHTML = DATA.leadership.map(l => `
+  document.getElementById('lead-grid').innerHTML = DATA.leadership.map(l => {
+    const displayName = lang === "en" ? (l.name_en || l.name_ne) : l.name_ne;
+    const roleLabel = lang === "en" ? (l.role_code || l.role_ne) : l.role_ne;
+    return `
     <div class="lead-card">
-      <div class="role">${l.role_ne}</div>
-      <div class="name-ne">${l.name_ne}</div>
-      <div class="name-en">${l.name_en}</div>
+      <div class="role">${roleLabel}</div>
+      <div class="name">${displayName}</div>
       <div class="phone">${l.office_phone || 'N/A'}</div>
     </div>
-  `).join('');
+  `;
+  }).join('');
 }
 function setupSearch() {
   const input = document.getElementById('hero-search-input');
@@ -363,14 +415,18 @@ function setupSearch() {
     const q = input.value.trim().toLowerCase();
     if (!q) { results.classList.remove('open'); results.innerHTML = ''; return; }
     const matches = DATA.members.filter(m =>
-      m.name_en.toLowerCase().includes(q) || m.name_ne.includes(q) || m.district.toLowerCase().includes(q) || m.district.includes(q)
+      (m.name_en || "").toLowerCase().includes(q) || (m.name_ne || "").includes(q) || (m.district || "").toLowerCase().includes(q) || (m.district || "").includes(q)
     ).slice(0, 8);
-    results.innerHTML = matches.map(m => `
+    results.innerHTML = matches.map(m => {
+      const displayName = lang === "en" ? (m.name_en || m.name_ne) : m.name_ne;
+      const displayDistrict = districtLabel(m.district) || "";
+      return `
       <a class="result-row" href="member.html?id=${m.id}">
-        <span class="party-dot" style="background:#${(PARTY_COLOR[m.party_code]||0x888888).toString(16).padStart(6,'0')}"></span>
-        <span>${m.name_ne} <span class="r-en">${m.name_en} · ${m.district}</span></span>
+        <span class="party-dot" style="background:${cssHex(PARTY_COLOR[m.party_code] || 0x888888)}"></span>
+        <span>${displayName} <span class="r-meta">${displayDistrict}</span></span>
       </a>
-    `).join('') || `<div class="result-row">No matches</div>`;
+    `;
+    }).join('') || `<div class="result-row">${(typeof APP !== 'undefined' && APP.t) ? APP.t("home_search_no_matches") : (lang === "en" ? "No matches found" : "कुनै मिल्दो नतिजा फेला परेन")}</div>`;
     results.classList.add('open');
   });
   document.addEventListener('click', e => { if (!e.target.closest('.hero-search')) results.classList.remove('open'); });

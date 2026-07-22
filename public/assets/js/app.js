@@ -7,7 +7,7 @@ const APP = (() => {
   const DATA_BASE = "/assets/data/";
   // Bump this whenever assets/data/*.json changes so returning visitors get
   // fresh data immediately instead of waiting out the Cache-Control max-age.
-  const DATA_VERSION = "2083-v1.3";
+  const DATA_VERSION = "2083-v1.4";
   const cache = {};
 
   async function loadJSON(name) {
@@ -136,6 +136,59 @@ const APP = (() => {
     return DISTRICT_LABEL_NE[district] || district;
   }
 
+  // Maps every district spelling found in members.json (the same 77-district
+  // keyset as DISTRICT_LABEL_NE above) to its real province id, matching the
+  // ids used in province_seats.json / nepal_districts.json ("koshi",
+  // "madhesh", "bagmati", "gandaki", "lumbini", "karnali", "sudurpashchim").
+  // Built by cross-referencing members.json's district spellings against
+  // nepal_districts.json's real, licensed geographic data (§5.4), then
+  // verified by re-deriving province_seats.json's HoR/NA seat totals from it
+  // and confirming an exact match for all 7 provinces — a spelling
+  // normalization over real, cross-checked geography, not a guess. Used by
+  // the "Find My Representative" tool to resolve a district to its province
+  // so National Assembly members (elected province-wide, not by district)
+  // can be shown alongside the district's HoR member(s).
+  const DISTRICT_TO_PROVINCE = {
+    "Achham": "sudurpashchim", "Arghakhanchi": "lumbini", "Baglung": "gandaki",
+    "Baitadi": "sudurpashchim", "Bajhang": "sudurpashchim", "Bajura": "sudurpashchim",
+    "Banke": "lumbini", "Bara": "madhesh", "Bardiya": "lumbini",
+    "Bhaktapur": "bagmati", "Bhojpur": "koshi", "Chitwan": "bagmati",
+    "Dadeldhura": "sudurpashchim", "Dailekh": "karnali", "Dang": "lumbini",
+    "Darchula": "sudurpashchim", "Dhading": "bagmati", "Dhankuta": "koshi",
+    "Dhanusa": "madhesh", "Dolakha": "bagmati", "Dolpa": "karnali",
+    "Doti": "sudurpashchim", "Gorkha": "gandaki", "Gulmi": "lumbini",
+    "Humla": "karnali", "Ilam": "koshi", "Jajarkot": "karnali",
+    "Jhapa": "koshi", "Jumla": "karnali", "Kailali": "sudurpashchim",
+    "Kalikot": "karnali", "Kanchanpur": "sudurpashchim", "Kapilbastu": "lumbini",
+    "Kaski": "gandaki", "Kathmandu": "bagmati", "Kavrepalanchowk": "bagmati",
+    "Khotang": "koshi", "Lalitpur": "bagmati", "Lamjung": "gandaki",
+    "Mahottari": "madhesh", "Makawanpur": "bagmati", "Manang": "gandaki",
+    "Morang": "koshi", "Mugu": "karnali", "Mustang": "gandaki",
+    "Myagdi": "gandaki", "Nawalparasi": "lumbini",
+    "Nawalparasi (East of Bardaghat Susta)": "gandaki",
+    "Nuwakot": "bagmati", "Okhaldhunga": "koshi", "Palpa": "lumbini",
+    "Panchthar": "koshi", "Parbat": "gandaki", "Parsa": "madhesh",
+    "Pyuthan": "lumbini", "Ramechhap": "bagmati", "Rasuwa": "bagmati",
+    "Rautahat": "madhesh", "Rolpa": "lumbini", "Rukum East": "lumbini",
+    "Rukum West": "karnali", "Rupandehi": "lumbini", "Salyan": "karnali",
+    "Sankhubasabha": "koshi", "Saptari": "madhesh", "Sarlahi": "madhesh",
+    "Sindhuli": "bagmati", "Sindhupalchowk": "bagmati", "Siraha": "madhesh",
+    "Solukhumbu": "koshi", "Sunsari": "koshi", "Surkhet": "karnali",
+    "Syangja": "gandaki", "Tanahun": "gandaki", "Taplejung": "koshi",
+    "Terhathum": "koshi", "Udayapur": "koshi",
+  };
+  // A handful of members.json rows store a bare province name (Devanagari)
+  // instead of a district — see §5.2. These resolve directly to a province.
+  const PROVINCE_NAME_DIRECT = {
+    "कर्णाली": "karnali", "कोशी": "koshi", "गण्डकी": "gandaki",
+    "धनुषा": "madhesh", "बागमती": "bagmati", "मधेश": "madhesh",
+    "लुम्बिनी": "lumbini", "सुदूरपश्चिम": "sudurpashchim", "काठमाडौं-९": "bagmati",
+  };
+  function provinceForDistrict(district) {
+    if (!district) return null;
+    return DISTRICT_TO_PROVINCE[district] || PROVINCE_NAME_DIRECT[district] || null;
+  }
+
   /* ---------------- Theme ---------------- */
   function initTheme() {
     const saved = localStorage.getItem("npd-theme");
@@ -194,6 +247,7 @@ const APP = (() => {
       ["leadership.html", t("nav_leadership")],
       ["committees.html", t("nav_committees")],
       ["government.html", t("nav_government")],
+      ["tools.html", t("nav_tools")],
       ["statistics.html", t("nav_statistics")],
       ["downloads.html", t("nav_downloads")],
       ["about.html", t("nav_about")],
@@ -412,6 +466,156 @@ const APP = (() => {
     ].filter(Boolean).join("\r\n");
   }
 
+  /* ---------------- Shareable profile card image ----------------
+     Renders a member's info (name, party, district, phone, email) as a
+     single self-contained image people can save or share, e.g. on
+     WhatsApp. This draws the CARD, not the raw source photo: the person's
+     photo is included as a small portrait inside the card when it can be
+     loaded, but the point of the image is the contact info, not the photo
+     itself. If the source photo can't be drawn (cross-origin canvas
+     tainting, since the parliament's photo server doesn't send CORS
+     headers we can rely on), the card still renders correctly with an
+     initial-letter avatar instead, it just skips the photo. */
+  function loadImageSafe(url) {
+    return new Promise((resolve) => {
+      if (!url) { resolve(null); return; }
+      const img = new Image();
+      img.crossOrigin = "anonymous";
+      const timer = setTimeout(() => resolve(null), 5000);
+      img.onload = () => { clearTimeout(timer); resolve(img); };
+      img.onerror = () => { clearTimeout(timer); resolve(null); };
+      img.src = url;
+    });
+  }
+
+  async function buildProfileCardImage(m, format = "png") {
+    const lang = getLang();
+    const W = 1080, H = 1350;
+    const canvas = document.createElement("canvas");
+    canvas.width = W; canvas.height = H;
+    const ctx = canvas.getContext("2d");
+
+    const INK = "#0D1117", PARCHMENT = "#F8F4E9", MUTED = "#5B5847", FAINT = "#8A8570";
+    const partyCode = m.party_code || "";
+    const accent = resolvePartyColor(partyCode) || "#8F7420";
+
+    if (document.fonts && document.fonts.ready) { try { await document.fonts.ready; } catch (e) {} }
+
+    // background
+    ctx.fillStyle = PARCHMENT;
+    ctx.fillRect(0, 0, W, H);
+    ctx.fillStyle = accent;
+    ctx.fillRect(0, 0, W, 10);
+    ctx.strokeStyle = "rgba(13,17,23,0.12)";
+    ctx.lineWidth = 2;
+    ctx.strokeRect(30, 30, W - 60, H - 60);
+
+    // photo or initial avatar
+    const cx = W / 2, cy = 300, r = 160;
+    const photo = m.photo ? await loadImageSafe(m.photo) : null;
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(cx, cy, r, 0, Math.PI * 2);
+    ctx.closePath();
+    ctx.fillStyle = accent;
+    ctx.fill();
+    let photoDrawn = false;
+    if (photo) {
+      try {
+        ctx.clip();
+        const scale = Math.max((r * 2) / photo.width, (r * 2) / photo.height);
+        const pw = photo.width * scale, ph = photo.height * scale;
+        ctx.drawImage(photo, cx - pw / 2, cy - ph / 2, pw, ph);
+        photoDrawn = true;
+      } catch (e) { /* tainted canvas from a cross-origin source; fall back below */ }
+    }
+    ctx.restore();
+    if (!photoDrawn) {
+      const initial = lang === "en" ? (m.name_en || m.name_ne || "?").trim().charAt(0)
+                                     : (m.name_ne || "?").replace(/^मा\.\s*|^डा\.\s*/, "").trim().charAt(0);
+      ctx.fillStyle = "#fff";
+      ctx.font = "700 130px 'Fraunces', serif";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText(initial, cx, cy + 8);
+    }
+    ctx.strokeStyle = "#fff";
+    ctx.lineWidth = 6;
+    ctx.beginPath();
+    ctx.arc(cx, cy, r, 0, Math.PI * 2);
+    ctx.stroke();
+
+    // name
+    const displayName = lang === "en" ? (m.name_en || m.name_ne) : m.name_ne;
+    ctx.fillStyle = INK;
+    ctx.textAlign = "center";
+    ctx.font = "700 56px 'Fraunces', 'Noto Serif Devanagari', serif";
+    ctx.fillText(displayName, cx, 545, W - 140);
+
+    // party
+    const partyName = partyLabelFor(partyCode, m.party_ne) || "";
+    ctx.fillStyle = accent;
+    ctx.font = "600 34px 'IBM Plex Sans', 'Noto Sans Devanagari', sans-serif";
+    ctx.fillText(partyName, cx, 600, W - 140);
+
+    // seat badge
+    const houseLabel = m.house === "HoR" ? t("house_hor") : t("house_na");
+    ctx.fillStyle = MUTED;
+    ctx.font = "500 30px 'IBM Plex Mono', monospace";
+    ctx.fillText(`${houseLabel} · #${(m.id || "").replace(/^MP0*/, "")}`, cx, 650);
+
+    // divider
+    ctx.strokeStyle = "rgba(13,17,23,0.15)";
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(140, 720);
+    ctx.lineTo(W - 140, 720);
+    ctx.stroke();
+
+    // detail rows
+    const district = districtLabelFor(m.district) || t("district_unspecified");
+    const phone = (m.phones && m.phones[0]) || "";
+    const email = (m.emails && m.emails[0]) || "";
+    const rows = [
+      [t("profile_district"), district],
+      [t("profile_phone"), phone || t("phone_unavailable")],
+      [t("profile_email"), email || t("email_unavailable")],
+    ];
+    let y = 800;
+    ctx.textAlign = "left";
+    rows.forEach(([label, value]) => {
+      ctx.fillStyle = FAINT;
+      ctx.font = "600 26px 'IBM Plex Sans', 'Noto Sans Devanagari', sans-serif";
+      ctx.fillText(label.toUpperCase(), 140, y);
+      ctx.fillStyle = INK;
+      ctx.font = "500 38px 'IBM Plex Mono', 'Noto Sans Devanagari', monospace";
+      ctx.fillText(value, 140, y + 44, W - 280);
+      y += 110;
+    });
+
+    // footer branding
+    ctx.textAlign = "center";
+    ctx.fillStyle = MUTED;
+    ctx.font = "600 26px 'IBM Plex Sans', 'Noto Sans Devanagari', sans-serif";
+    ctx.fillText(lang === "en" ? "Federal Parliament Contact Directory" : "संघीय संसद सम्पर्क निर्देशिका", cx, H - 90);
+    ctx.fillStyle = FAINT;
+    ctx.font = "500 22px 'IBM Plex Mono', monospace";
+    ctx.fillText("nepal-parliament-directory.vercel.app", cx, H - 55);
+
+    const mime = format === "jpeg" ? "image/jpeg" : "image/png";
+    const blob = await new Promise((resolve) => canvas.toBlob(resolve, mime, 0.95));
+    if (!blob) throw new Error("canvas export failed");
+    const filename = `${(m.name_en || m.id).replace(/\s+/g, "_")}.${format === "jpeg" ? "jpg" : "png"}`;
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 2000);
+  }
+
   function downloadFile(filename, content, mime = "text/plain") {
     const blob = new Blob([content], { type: mime + ";charset=utf-8" });
     const url = URL.createObjectURL(blob);
@@ -508,8 +712,10 @@ const APP = (() => {
     loadJSON, debounce, escapeHtml, highlight, partyColorVar, resolvePartyColor, PARTY_LABEL_SHORT,
     initTheme, toggleTheme, renderHeader, renderSubnav, renderFooter, initScrollTop,
     initKeyboardShortcuts, toast, announce, enSpan, copyText, whatsappLink, vCard, downloadFile,
+    buildProfileCardImage,
     initServiceWorker, initStickyFilterBar, initLangToggle, skeletonCards, ICONS, t, getLang,
-    initPhotoFallback, partyLabelFor, PARTY_LABEL_EN, districtLabelFor
+    initPhotoFallback, partyLabelFor, PARTY_LABEL_EN, districtLabelFor, provinceForDistrict,
+    DISTRICT_TO_PROVINCE
   };
 })();
 

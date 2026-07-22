@@ -140,7 +140,8 @@
 
       <div class="profile-actions">
         ${phone ? `<a class="btn whatsapp-btn" id="waBtn" target="_blank" rel="noopener">${APP.ICONS.whatsapp}${APP.t("action_whatsapp")}</a>` : ""}
-        <button class="btn primary" id="vcardBtn">${APP.ICONS.download}${APP.t("action_vcard")}</button>
+        <button class="btn primary" id="saveImagePngBtn">${APP.ICONS.download}${APP.t("action_save_image")}</button>
+        <button class="btn" id="saveImageJpgBtn">${APP.t("action_save_image_jpg")}</button>
         <button class="btn" id="copyBtn">${APP.ICONS.copy}${APP.t("action_copy")}</button>
         <button class="btn" id="shareBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>${APP.t("action_share")}</button>
         <button class="btn" id="printProfileBtn">${APP.ICONS.printer}${APP.t("action_print")}</button>
@@ -152,9 +153,20 @@
   APP.announce(`${lang === "en" ? (m.name_en || m.name_ne) : m.name_ne}`);
 
   if (phone) document.getElementById("waBtn").href = APP.whatsappLink(phone);
-  document.getElementById("vcardBtn").addEventListener("click", () => {
-    APP.downloadFile(`${(m.name_en || m.id).replace(/\s+/g, "_")}.vcf`, APP.vCard(m), "text/vcard");
-  });
+  const saveImage = async (btn, format) => {
+    const original = btn.innerHTML;
+    btn.disabled = true;
+    btn.textContent = APP.t("action_saving");
+    try {
+      await APP.buildProfileCardImage(m, format);
+    } catch (e) {
+      APP.toast(APP.t("action_save_image_failed"));
+    }
+    btn.disabled = false;
+    btn.innerHTML = original;
+  };
+  document.getElementById("saveImagePngBtn").addEventListener("click", (e) => saveImage(e.currentTarget, "png"));
+  document.getElementById("saveImageJpgBtn").addEventListener("click", (e) => saveImage(e.currentTarget, "jpeg"));
   document.getElementById("copyBtn").addEventListener("click", () => {
     const parts = [m.name_en || m.name_ne, phone, email].filter(Boolean);
     APP.copyText(parts.join(" · "), APP.t("contact_details"));

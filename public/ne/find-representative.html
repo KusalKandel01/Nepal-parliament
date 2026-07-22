@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html lang="ne" translate="no">
+<head>
+<meta charset="utf-8"/>
+<meta content="notranslate" name="google"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>मेरो प्रतिनिधि खोज्नुहोस् · संघीय संसद सम्पर्क निर्देशिका</title>
+<meta content="आफ्नो प्रदेश र जिल्ला छानेर त्यहाँका प्रतिनिधि सभा र राष्ट्रिय सभा सदस्यहरूको सम्पर्क विवरण तुरुन्तै हेर्नुहोस्।" name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&amp;family=Noto+Serif+Devanagari:wght@500;700&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=Noto+Sans+Devanagari:wght@400;500;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="../assets/images/icon-180.png" rel="apple-touch-icon" sizes="180x180"/>
+<meta content="#EDE6D6" media="(prefers-color-scheme: light)" name="theme-color"/>
+<meta content="#0D1117" media="(prefers-color-scheme: dark)" name="theme-color"/>
+<meta content="website" property="og:type"/>
+<meta content="Federal Parliament Contact Directory" property="og:site_name"/>
+<meta content="मेरो प्रतिनिधि खोज्नुहोस् · संघीय संसद सम्पर्क निर्देशिका" property="og:title"/>
+<meta content="आफ्नो प्रदेश र जिल्ला छानेर त्यहाँका प्रतिनिधि सभा र राष्ट्रिय सभा सदस्यहरूको सम्पर्क विवरण तुरुन्तै हेर्नुहोस्।" property="og:description"/>
+<meta content="https://nepal-parliament-directory.vercel.app/assets/images/parliament.svg" property="og:image"/>
+<meta content="https://nepal-parliament-directory.vercel.app/ne/find-representative.html" property="og:url"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<link href="https://nepal-parliament-directory.vercel.app/ne/find-representative.html" hreflang="ne" rel="alternate"/>
+<link href="https://nepal-parliament-directory.vercel.app/en/find-representative.html" hreflang="en" rel="alternate"/>
+<link href="https://nepal-parliament-directory.vercel.app/ne/find-representative.html" hreflang="x-default" rel="alternate"/>
+<link href="https://nepal-parliament-directory.vercel.app/ne/find-representative.html" rel="canonical"/>
+<link href="../assets/images/emblem.svg" rel="icon" type="image/svg+xml"/>
+<link href="../assets/images/icon-32.png" rel="icon" sizes="32x32" type="image/png"/>
+<link href="../assets/images/icon-16.png" rel="icon" sizes="16x16" type="image/png"/>
+<link href="../manifest.json" rel="manifest"/>
+<link href="../assets/css/style.css?v=20260722a" rel="stylesheet"/>
+</head>
+<body class="notranslate" data-back-href="index.html" data-back-key="nav_home" data-page="find-representative.html" data-scroll-top="" data-subnav-key="tool_findrep_title">
+<a class="skip-link" data-i18n="skip_to_main" href="#main">मुख्य सामग्रीमा जानुहोस्</a>
+<div aria-hidden="true" class="bg-atmosphere"></div>
+<div aria-hidden="true" class="bg-grain"></div>
+<header class="site-header" id="siteHeader"></header>
+<div class="subnav" id="subnav"></div>
+<main id="main">
+<svg aria-hidden="true" height="0" style="position:absolute" width="0"><filter color-interpolation-filters="sRGB" id="sharpen-photo"><feconvolvematrix kernelmatrix="0 -0.55 0  -0.55 3.2 -0.55  0 -0.55 0" order="3" preservealpha="true"></feconvolvematrix></filter></svg>
+<div class="page-hero">
+<div class="eyebrow" data-i18n="findrep_hero_eyebrow" style="justify-content:center">जिल्ला र प्रदेश अनुसार</div>
+<h1 data-i18n="findrep_hero_title">मेरो प्रतिनिधि खोज्नुहोस्</h1>
+<p data-i18n="findrep_hero_lede">आफ्नो प्रदेश र जिल्ला छान्नुहोस्। प्रतिनिधि सभाको सदस्य जिल्ला अनुसार र राष्ट्रिय सभाका सदस्यहरू सम्पूर्ण प्रदेश अनुसार देखिनेछन्।</p>
+</div>
+<div class="section">
+<div class="panel">
+<div class="findrep-step">
+<div class="findrep-step-label" data-i18n="findrep_province_label">१. आफ्नो प्रदेश छान्नुहोस्</div>
+<div class="province-picker" id="provincePicker" role="group"></div>
+</div>
+<div class="findrep-step">
+<div class="findrep-step-label" data-i18n="findrep_district_label">२. आफ्नो जिल्ला छान्नुहोस्</div>
+<div class="select-field w-min-200">
+<select disabled="" id="districtSelect"></select>
+</div>
+</div>
+</div>
+<div id="findrepResults">
+<div class="findrep-prompt" data-i18n="findrep_start_prompt">सुरु गर्न माथि आफ्नो प्रदेश र जिल्ला छान्नुहोस्।</div>
+</div>
+<p class="panel-text-sm text-center" data-i18n="findrep_data_note" style="margin-top:28px; max-width:640px; margin-left:auto; margin-right:auto;">यो उपकरणले members.json मा भएको त्यही प्रमाणित डाटा प्रयोग गर्छ जुन सदस्य निर्देशिकामा देखिन्छ — कुनै छुट्टै वा अनुमानित जानकारी थपिएको छैन।</p>
+</div>
+</main>
+<footer class="site-footer" id="siteFooter"></footer>
+<button aria-label="माथि जानुहोस्" class="scroll-top" id="scrollTopBtn"></button>
+<script src="../assets/js/i18n.js?v=20260722a"></script>
+<script src="../assets/js/app.js?v=20260722a"></script>
+<script src="../assets/js/findrep.js?v=20260722a"></script>
+</body>
+</html>

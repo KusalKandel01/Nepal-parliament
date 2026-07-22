@@ -26,7 +26,8 @@
   "Phone numbers and email addresses were extracted from the PDF text layer (digits/Latin text are not affected by the font corruption) and cross-matched to each member by page position.",
   "Photos sourced from the official hr.parliament.gov.np and na.parliament.gov.np member directories.",
   "8 of 332 members have no phone number on file in the source directory (left null rather than guessed).",
-  "Rashtriya Sabha serial number 14 is genuinely absent from the source PDF (not a parsing error)."
+  "Rashtriya Sabha serial number 14 is genuinely absent from the source PDF (not a parsing error).",
+  "2026-07-22: members.json and leadership.json incorrectly listed Pushpa Kamal Dahal 'Prachanda' (MP0118) as Prime Minister, a role he held before the March 2026 general election. Corrected to Balendra Shah (MP0212), Prime Minister since 27 March 2026, per multiple independently corroborating sources (Wikipedia, Kathmandu Post, Rising Nepal Daily) cross-checked against this directory's own government_sites.json (as_of 2026-07-16)."
  ],
- "data_version": "2083-v1.1"
+ "data_version": "2083-v1.4"
 }
