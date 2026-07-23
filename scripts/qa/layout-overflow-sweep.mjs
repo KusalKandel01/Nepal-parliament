@@ -49,13 +49,9 @@ for (const { lang, name, url } of allUrls(baseUrl)) {
 
     // Below/at 1180px the hamburger should show and the full nav should hide;
     // above it's the reverse (style.css uses @media (max-width: 1180px), which
-    // is inclusive of 1180 itself). index.html is excluded from this specific
-    // check: home.js intentionally renders lightweight custom header markup
-    // for the homepage instead of the shared .header-nav/.hamburger (see
-    // home.js's own top-of-file comment) — that's an established site design
-    // choice, not a bug this sweep should flag.
+    // is inclusive of 1180 itself).
     const expectHamburger = width <= 1180;
-    if (!name.startsWith("index.html")) {
+    {
       if (expectHamburger && navVisible) problems.push("full nav visible at/below 1180px breakpoint (should be hidden)");
       if (!expectHamburger && !navVisible) problems.push("full nav hidden above 1180px breakpoint (should be visible)");
       if (expectHamburger && !hamburgerVisible) problems.push("hamburger hidden at/below 1180px breakpoint (should be visible)");

@@ -57,11 +57,9 @@ pushes the ratio well past 0.3.
 **layout-overflow-sweep.mjs** — checks `scrollWidth <= clientWidth` (no
 horizontal scrollbar) at 375 / 768 / 1024 / 1179 / 1180 / 1440px, plus that
 `.header-nav` and `.hamburger` visibility matches the `max-width: 1180px`
-breakpoint in `style.css`. `index.html` is excluded from the nav/hamburger
-check specifically, because `home.js` intentionally renders its own
-lightweight header markup for the homepage instead of the shared
-`.header-nav`/`.hamburger` (see the comment at the top of `home.js`) — that's
-a deliberate design choice, not something this sweep should flag.
+breakpoint in `style.css`. As of 2026-07-23, `index.html` was rebuilt to use
+the same shared header as every other page, so it's checked identically —
+no more exceptions here.
 
 ## Adding a new page
 

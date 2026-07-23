@@ -1,0 +1,10 @@
+import { chromium } from 'playwright';
+const b = await chromium.launch();
+const page = await b.newPage({viewport:{width:375, height:700}});
+await page.goto('http://localhost:8911/en/index.html', {waitUntil:'networkidle'});
+await page.screenshot({path:'/mnt/user-data/outputs/mobile_home_375.png'});
+await page.close();
+const page2 = await b.newPage({viewport:{width:375, height:200}});
+await page2.goto('http://localhost:8911/en/directory.html', {waitUntil:'networkidle'});
+await page2.screenshot({path:'/mnt/user-data/outputs/mobile_header_375.png'});
+await b.close();
