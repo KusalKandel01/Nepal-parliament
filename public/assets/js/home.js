@@ -95,7 +95,7 @@
       return `
         <article class="gov-card">
           <h3 class="gov-name">${APP.escapeHtml(name)}</h3>
-          <p class="gov-minister"><strong>${APP.t("gov_titleholder_label")}:</strong> <span translate="no">${APP.escapeHtml(holder)}</span></p>
+          <p class="gov-minister"><strong>${APP.t("gov_titleholder_label")}:</strong> <a href="national-leader.html?id=${o.id}" translate="no">${APP.escapeHtml(holder)}</a></p>
           ${extra ? `<p class="gov-extra">${APP.escapeHtml(extra)}</p>` : ""}
         </article>`;
     }).join("");
