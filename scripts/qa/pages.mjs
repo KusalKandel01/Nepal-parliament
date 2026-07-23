@@ -16,6 +16,7 @@ export const PAGE_NAMES = [
   "find-representative.html",
   "compare.html",
   "legislative-process.html",
+  "national-leader.html?id=president",
   "404.html",
 ];
 
