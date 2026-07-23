@@ -261,7 +261,7 @@ const APP = (() => {
       <div class="container">
         <a class="brand" href="index.html">
           <span class="brand-crest" aria-hidden="true">${getLang() === "en" ? "FP" : "सं"}</span>
-          <span class="brand-title">${getLang() === "en" ? "Federal Parliament Contact Directory" : "संघीय संसद सम्पर्क निर्देशिका"}</span>
+          <span class="brand-title">${getLang() === "en" ? "Nepal Parliament Directory" : "संसद निर्देशिका"}</span>
         </a>
         <nav class="header-nav" aria-label="Primary">${navHtml}</nav>
         <div class="header-actions">
