@@ -3,112 +3,142 @@
 <html lang="en" translate="no">
 <head>
 <meta charset="utf-8"/>
+<meta content="notranslate" name="google"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Federal Parliament Contact Directory · Nepal</title>
-<meta content="नेपालको संघीय संसदका ३३२ सांसदहरूको आधिकारिक, अन्तरक्रियात्मक सम्पर्क निर्देशिका।" name="description"/>
+<meta content="The official, interactive contact directory of Nepal's Federal Parliament — 332 members, the Council of Ministers, and national leadership." name="description"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&amp;family=Noto+Serif+Devanagari:wght@500;700&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=Noto+Sans+Devanagari:wght@400;500&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&amp;family=Noto+Serif+Devanagari:wght@500;700&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=Noto+Sans+Devanagari:wght@400;500;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="../assets/images/icon-180.png" rel="apple-touch-icon" sizes="180x180"/>
+<meta content="#EDE6D6" media="(prefers-color-scheme: light)" name="theme-color"/>
+<meta content="#0D1117" media="(prefers-color-scheme: dark)" name="theme-color"/>
+<meta content="website" property="og:type"/>
+<meta content="Federal Parliament Contact Directory" property="og:site_name"/>
+<meta content="Federal Parliament Contact Directory · Nepal" property="og:title"/>
+<meta content="The official, interactive contact directory of Nepal's Federal Parliament — 332 members, the Council of Ministers, and national leadership." property="og:description"/>
+<meta content="https://nepal-parliament-directory.vercel.app/assets/images/parliament.svg" property="og:image"/>
+<meta content="https://nepal-parliament-directory.vercel.app/en/index.html" property="og:url"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<link href="https://nepal-parliament-directory.vercel.app/ne/index.html" hreflang="ne" rel="alternate"/>
+<link href="https://nepal-parliament-directory.vercel.app/en/index.html" hreflang="en" rel="alternate"/>
+<link href="https://nepal-parliament-directory.vercel.app/ne/index.html" hreflang="x-default" rel="alternate"/>
+<link href="https://nepal-parliament-directory.vercel.app/en/index.html" rel="canonical"/>
 <link href="../assets/images/emblem.svg" rel="icon" type="image/svg+xml"/>
-<link href="../assets/css/immersive.css?v=20260722a" rel="stylesheet"/>
-<meta content="#0D1117" name="theme-color"/>
+<link href="../assets/images/icon-32.png" rel="icon" sizes="32x32" type="image/png"/>
+<link href="../assets/images/icon-16.png" rel="icon" sizes="16x16" type="image/png"/>
+<link href="../manifest.json" rel="manifest"/>
+<link href="../assets/css/style.css?v=20260723a" rel="stylesheet"/>
 </head>
-<body>
-<canvas id="ambient-canvas"></canvas>
-<header class="site-header">
-<div class="brand">Federal Parliament · <strong>Contact Directory</strong></div>
-<nav>
-<a data-i18n="nav_directory" href="directory.html">Member Directory</a>
-<a data-i18n="nav_leadership" href="leadership.html">Leadership</a>
-<a data-i18n="nav_committees" href="committees.html">Committees</a>
-<a data-i18n="nav_government" href="government.html">Government Sites</a>
-<a data-i18n="nav_statistics" href="statistics.html">Statistics</a>
-<div aria-label="Change language" class="lang-toggle-mini" id="homeLangToggle" role="group">
-<a data-lang="ne" href="../ne/index.html">ने</a>
-<a data-lang="en" href="index.html">EN</a>
+<body class="notranslate" data-page="index.html" data-scroll-top="">
+<a class="skip-link" data-i18n="skip_to_main" href="#main">Skip to main content</a>
+<div aria-hidden="true" class="bg-atmosphere"></div>
+<div aria-hidden="true" class="bg-grain"></div>
+<header class="site-header" id="siteHeader"></header>
+<main id="main">
+
+<div class="page-hero home-hero">
+<div class="eyebrow" data-i18n="hero_eyebrow" style="justify-content:center">332 seats · 2 houses · 1 chamber</div>
+<h1 data-i18n="home_hero_title">Every seat, a representative</h1>
+<p data-i18n="hero_lede">The complete, cross-verified contact directory of Nepal's Federal Parliament (House of Representatives and National Assembly), plus the Council of Ministers and national leadership. Search any member or call their office directly.</p>
+<div class="compare-picker" style="margin-top:22px;">
+<div class="search-box">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+<input aria-label="Search" autocomplete="off" data-i18n-placeholder="hero_search_placeholder" id="heroSearchInput" placeholder="Search by name, district, party, or phone…" type="search"/>
 </div>
-</nav>
-</header>
-<main>
-<section class="hero stage">
-<div class="wrap hero-inner">
-<div class="hero-copy">
-<div class="eyebrow" data-i18n="hero_eyebrow">332 seats · 2 houses · 1 chamber</div>
-<h1>
-<span class="en">Every seat, a representative</span>
-</h1>
-<p class="lede" data-i18n="hero_lede">The complete, cross-verified contact directory of Nepal's Federal Parliament (House of Representatives and National Assembly). Search any member, call their office, or explore the chamber below exactly as it's seated.</p>
-<div class="hero-search">
-<input autocomplete="off" id="hero-search-input" placeholder="Search by name or district…" type="text"/>
-<div class="results" id="hero-search-results"></div>
+<div class="suggest-box" hidden="" id="heroSuggestions"></div>
 </div>
-<div class="hero-cta">
+<div class="flex-gap-md" style="justify-content:center; margin-top:20px; flex-wrap:wrap;">
 <a class="btn primary" data-i18n="hero_open_directory" href="directory.html">Open full directory →</a>
 <a class="btn" data-i18n="hero_download_csv_json" href="downloads.html">Download CSV / JSON</a>
 </div>
 </div>
-<div class="chamber-hint" data-webgl-only>
-<p class="chamber-caption" data-i18n="chamber_caption">You're standing inside the chamber. Drag to look around · hover any seat to see who sits there · click to open their profile.</p>
-<div class="legend">
-<span class="item"><span class="swatch" style="background:#A6303F"></span>NC</span>
-<span class="item"><span class="swatch" style="background:#C9A227"></span>RSP</span>
-<span class="item"><span class="swatch" style="background:#3D5799"></span>UML</span>
-<span class="item"><span class="swatch" style="background:#B5493A"></span>MLM</span>
-<span class="item"><span class="swatch" style="background:#5B7A6E"></span>RPP</span>
-<span class="item"><span class="swatch" style="background:#8D8D8D"></span><span data-i18n="legend_other">Other</span></span>
+
+<div class="stats-bar" id="statsBar"></div>
+
+<div class="section">
+<div class="section-head" style="text-align:center; max-width:640px; margin:0 auto 24px;">
+<div class="eyebrow" data-i18n="home_quicktools_eyebrow" style="justify-content:center">Quick tools</div>
+<h2 data-i18n="home_quicktools_title">Start from wherever you actually need to go</h2>
+<p data-i18n="home_quicktools_lede">Beyond the full directory — quickly find your representative, compare members, or see how the government is organized.</p>
+</div>
+<div class="about-grid">
+<div class="about-card">
+<div class="icon-wrap"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg></div>
+<h3 data-i18n="tool_findrep_title">Find My Representative</h3>
+<p data-i18n="tool_findrep_desc">Pick your province and district, and instantly see your House of Representatives and National Assembly members' contact details.</p>
+<a class="tool-card-cta" data-i18n="tool_findrep_cta" href="find-representative.html">Find your representative →</a>
+</div>
+<div class="about-card">
+<div class="icon-wrap"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M3 3v18h18"></path><path d="M18 17V9"></path><path d="M13 17V5"></path><path d="M8 17v-3"></path></svg></div>
+<h3 data-i18n="tool_compare_title">Compare Members</h3>
+<p data-i18n="tool_compare_desc">Pick two or three members and compare their party, house, district, and contact details side by side.</p>
+<a class="tool-card-cta" data-i18n="tool_compare_cta" href="compare.html">Start comparing →</a>
+</div>
+<div class="about-card">
+<div class="icon-wrap"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><line x1="3" x2="21" y1="22" y2="22"></line><line x1="6" x2="6" y1="18" y2="11"></line><line x1="10" x2="10" y1="18" y2="11"></line><line x1="14" x2="14" y1="18" y2="11"></line><line x1="18" x2="18" y1="18" y2="11"></line><polygon points="12 2 20 7 4 7"></polygon></svg></div>
+<h3 data-i18n="tool_government_title">Government & Ministers</h3>
+<p data-i18n="tool_government_desc">The Prime Minister, all 18 federal ministries, and key constitutional bodies — with the minister responsible and official sites.</p>
+<a class="tool-card-cta" data-i18n="tool_government_cta" href="government.html">See the government →</a>
+</div>
+<div class="about-card">
+<div class="icon-wrap"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="m14.5 12.5-8 8a2.119 2.119 0 1 1-3-3l8-8"></path><path d="m16 16 6-6"></path><path d="m8 8 6-6"></path><path d="m9 7 8 8"></path><path d="m21 11-8-8"></path></svg></div>
+<h3 data-i18n="tool_legislative_title">How a Bill Becomes Law</h3>
+<p data-i18n="tool_legislative_desc">A general introduction to the process a bill goes through to become law in Nepal's Federal Parliament.</p>
+<a class="tool-card-cta" data-i18n="tool_legislative_cta" href="legislative-process.html">See the process →</a>
 </div>
 </div>
 </div>
-</section>
-<section class="stage" data-reveal="">
-<div class="wrap">
-<div class="stat-grid">
-<div class="stat-cell"><div class="num" id="stat-total">N/A</div><div class="label" data-i18n="stat_total">Total members</div></div>
-<div class="stat-cell"><div class="num" id="stat-hor">N/A</div><div class="label" data-i18n="stat_hor">House of Representatives</div></div>
-<div class="stat-cell"><div class="num" id="stat-na">N/A</div><div class="label" data-i18n="stat_na">National Assembly</div></div>
-<div class="stat-cell"><div class="num" id="stat-committees">N/A</div><div class="label" data-i18n="stat_committees">Parliamentary committees</div></div>
+
+<div class="section">
+<div class="section-head" style="text-align:center; max-width:640px; margin:0 auto 24px;">
+<div class="eyebrow" data-i18n="home_keyoffices_eyebrow" style="justify-content:center">National leadership</div>
+<h2 data-i18n="home_keyoffices_title">Who leads the country</h2>
+<p data-i18n="home_keyoffices_lede">Head of state, head of government, and head of the judiciary — the offices that sit outside the Council of Ministers.</p>
 </div>
+<div class="grid-2col-min260" id="keyOfficesGrid"></div>
+<p style="text-align:center; margin-top:18px;"><a class="tool-card-cta" data-i18n="home_keyoffices_more" href="government.html">See the full Government page →</a></p>
 </div>
-</section>
-<section class="stage">
-<div class="wrap">
-<div class="section-head" data-reveal="">
-<div class="eyebrow" data-i18n="section_composition_eyebrow">Composition</div>
+
+<div class="section">
+<div class="section-head" style="text-align:center; max-width:640px; margin:0 auto 24px;">
+<div class="eyebrow" data-i18n="section_composition_eyebrow" style="justify-content:center">Composition</div>
 <h2 data-i18n="section_composition_title">Who holds the chamber</h2>
 <p data-i18n="section_composition_lede">Every party's share of all 332 seats, House and National Assembly combined.</p>
 </div>
-<div class="party-bars" data-reveal="" id="party-bars"></div>
+<div class="panel">
+<div class="flex-gap-lg">
+<div id="homePartyDonut"></div>
+<div class="w-min-200 flex-1" id="homePartyLegend"></div>
 </div>
-</section>
-<section class="stage">
-<div class="wrap">
-<div class="section-head" data-reveal="">
-<div class="eyebrow" data-i18n="nav_leadership">Leadership</div>
-<h2 data-i18n="section_leadership_title">Speaker, Deputy Speaker &amp; chamber chairs</h2>
-<p data-i18n="section_leadership_lede">Direct office lines for the five leadership seats of the Federal Parliament.</p>
 </div>
-<div class="lead-grid" data-reveal="" id="lead-grid"></div>
 </div>
-</section>
-<section class="stage closing" data-reveal="">
-<div class="wrap">
-<div class="eyebrow" data-i18n="closing_eyebrow" style="justify-content:center">16 committees · 10 party offices</div>
+
+<div class="section">
+<div class="section-head" style="text-align:center; max-width:640px; margin:0 auto 24px;">
+<div class="eyebrow" data-i18n="nav_leadership" style="justify-content:center">Leadership</div>
+<h2 data-i18n="section_leadership_title">Speaker, Deputy Speaker, chamber chairs & Prime Minister</h2>
+<p data-i18n="section_leadership_lede">Direct office contacts for the five leadership seats of the Federal Parliament.</p>
+</div>
+<div aria-live="polite" class="leader-grid" id="homeLeaderGrid"></div>
+</div>
+
+<div class="section closing-cta">
+<div class="eyebrow" data-i18n="closing_eyebrow" style="justify-content:center">16 committees · 18 ministries · 10 party offices</div>
 <h2 data-i18n="closing_title">Reach the whole institution, not just the roster.</h2>
-<div class="hero-cta" style="justify-content:center">
-<a class="btn primary" data-i18n="closing_browse_committees" href="committees.html">Browse committees →</a>
+<div class="flex-gap-md" style="justify-content:center; flex-wrap:wrap; margin-top:18px;">
+<a class="btn primary" data-i18n="closing_browse_tools" href="tools.html">See all tools →</a>
+<a class="btn" data-i18n="closing_browse_committees" href="committees.html">Browse committees →</a>
 <a class="btn" data-i18n="closing_how_verified" href="about.html">How this data was verified</a>
 </div>
 </div>
-</section>
+
 </main>
-<footer class="site-footer" data-i18n="home_footer">Federal Parliament Secretariat, Singha Durbar, Kathmandu · Data cross-referenced with hr.parliament.gov.np &amp; na.parliament.gov.np · Independent civic-tech project</footer>
-<script src="../assets/js/i18n.js?v=20260722a"></script>
-<script src="../assets/js/app.js?v=20260722a"></script>
-<script src="../assets/js/home.js?v=20260722a"></script>
-<script src="../assets/vendor/three.min.js"></script>
-<script src="../assets/vendor/three-addons.js"></script>
-<script src="../assets/vendor/gsap.min.js"></script>
-<script src="../assets/vendor/ScrollTrigger.min.js"></script>
-<script src="../assets/js/chamber3d.js?v=20260722a"></script>
+<footer class="site-footer" id="siteFooter"></footer>
+<button aria-label="Scroll to top" class="scroll-top" id="scrollTopBtn"></button>
+<script src="../assets/js/i18n.js?v=20260723a"></script>
+<script src="../assets/js/app.js?v=20260723a"></script>
+<script src="../assets/js/charts.js?v=20260723a"></script>
+<script src="../assets/js/home.js?v=20260723a"></script>
 </body>
 </html>
